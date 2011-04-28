@@ -10,19 +10,37 @@ body {
 }
 
 /* Post body */
-p {
+.post {
   background-color:#fff;
   min-height:100px;
-
+  padding-left:10px;
+  padding-top:5px;
 }
+
+.date {
+  color:#aaa;
+  font-size:70%;
+  padding-bottom:15px;
+  margin-left:5px;
+}
+
+.title {
+  font-size:250%;
+}
+
+.description {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
 /*h2 { font-size: 1.5em; color: #0a0a0a; }*/
 h1 { font-size: 3.8em; color: #0a0a0a; margin-bottom: 3px; }
 h1 .small { font-size: 0.4em; }
 h1 a { text-decoration: none }
 h3 { text-align: center; color: #0a0a0a; }
 a { color: #0a0a0a; }
-.description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
 .download { float: right; }
 pre { background: #000; color: #fff; padding: 15px;}
 hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-.footer { text-align:center; padding-top:30px; font-style: italic; font-size:80%;}
+.footer { text-align:center; padding-top:30px; font-style: italic; font-size:60%;}
