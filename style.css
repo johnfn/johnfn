@@ -17,6 +17,10 @@ body {
   padding-top:5px;
 }
 
+.body {
+  padding-left: 15px;
+}
+
 .date {
   color:#aaa;
   font-size:70%;
