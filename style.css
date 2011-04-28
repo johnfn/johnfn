@@ -8,10 +8,17 @@ body {
   margin: 0 auto;
   width: 700px;
 }
+
+/* Post body */
+p {
+  background-color:#fff;
+  min-height:100px;
+
+}
+/*h2 { font-size: 1.5em; color: #0a0a0a; }*/
 h1 { font-size: 3.8em; color: #0a0a0a; margin-bottom: 3px; }
 h1 .small { font-size: 0.4em; }
 h1 a { text-decoration: none }
-h2 { font-size: 1.5em; color: #0a0a0a; }
 h3 { text-align: center; color: #0a0a0a; }
 a { color: #0a0a0a; }
 .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
