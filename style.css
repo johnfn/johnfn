@@ -48,7 +48,7 @@ body {
 }
 
 /*h2 { font-size: 1.5em; color: #0a0a0a; }*/
-h1 { font-size: 3.8em; color: #0a0a0a; margin-bottom: 10px; }
+h1 { border-bottom: 4px solid #eee; font-size: 3.8em; color: #0a0a0a; padding-bottom: 8px; margin-bottom: 20px; }
 h1 .small { font-size: 0.2em; font-weight:normal;}
 h3 { text-align: center; color: #0a0a0a; }
 a { color: #0a0a0a; }
