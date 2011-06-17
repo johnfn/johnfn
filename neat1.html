@@ -15,14 +15,14 @@
       <span class="small">by johnfn. This collection of neat stuff is <a href="http://github.com/johnfn/johnfn">a github repository</a>. </span></h1>
     <div class="post">
       <div class="title">
-				Using Vim, JavaScript and Taglist
+				Using Vim with JavaScript, JSLint, and Taglist
       </div>
       <div class="date"> 
 				Thursday, June 16, 2010
       </div>
       <div class="body">
 <p>
-	Two awesome tools and an awesome language. Unfortuantely, it's not straightforward to figure out how they all work together. This is my configuration. I'm going to assume you've installed taglist in VIM. 
+Two awesome tools, an awesome language, and JSlint... ;) Unfortuantely, it's not straightforward to get them to work together. This is my configuration. I'm going to assume you've installed taglist in VIM.
 </p>
 
 <p>
@@ -30,7 +30,7 @@
 </p>
 <p>
 <pre>
-	let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:function'
+let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:function'
 </pre>
 </p>
 
@@ -49,6 +49,16 @@
 --regex-JavaScript=/^[ \t]*function ([A-Z]+[A-Za-z0-9_]*)/\1/o,object/
 </pre>
 <small>Note: This does a pretty good job but still misses out on some things. Javascript has surprisingly complicated declarations. I'm working to improve it.</small>
+</p>
+
+<p>
+	For JSLint, I assume you downloaded some version of jslint that you can run with rhino or whatever. <b> In ~/.vimrc</b>, put the following:
+</p>
+<p>
+<pre>
+:map &lt;F7&gt; :w&lt;CR&gt;:!rm OUT_TEMP&lt;CR&gt;:!rhino jslint.js &gt; OUT_TEMP&lt;CR&gt;:split OUT_TEMP&lt;CR&gt;
+</pre>
+When you press F7, this runs jslint, dumps it into a temporary file, and then opens it up in a new buffer. Then you can scroll through and have your <a href="http://www.jslint.com">feelings hurt</a>. You can tweak the !rhino line to use node or whatever you cool kids are doing these days.
 </p>
 
 <p>
