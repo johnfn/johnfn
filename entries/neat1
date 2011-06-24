@@ -1,0 +1,40 @@
+TITLE:
+Using Vim with JavaScript, JSLint and Taglist
+DATE:
+Thursday, June 16, 2010
+BODY:
+Two awesome tools, an awesome language, and JSlint... ;) Unfortuantely, it's not straightforward to get them to work together. This is my configuration. I'm going to assume you've installed taglist in VIM.
+
+	<b> In ~/.vimrc</b>, put the following:
+
+<pre>
+let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:function'
+</pre>
+
+<b> In ~/.ctags</b>, put the following:
+
+<pre>
+--regex-JavaScript=/^var[ \t]+([a-zA-Z0-9_$]+) = \[/\1/a,array/
+--regex-JavaScript=/^var[ \t]+([a-zA-Z0-9_$]+) = \{/\1/o,object/
+--regex-JavaScript=/^var[ \t]+([a-zA-Z0-9_$]+) = (^{^[)+/\1/r,var/
+--regex-JavaScript=/^[ \t]*(this\.)?([A-Za-z0-9_$()]+)[ \t]*[:=][ \t]*function[ \t]*\(\)/\2/u,function/
+--regex-JavaScript=/^[ \t]*function ([a-z0-9]+[A-Za-z0-9_]*)/\1/u,function/
+--regex-JavaScript=/^[ \t]*([A-Za-z0-9]+)\.prototype\.([a-z0-9]+[A-Za-z0-9_]*)/\1 : \2/u,function/
+--regex-JavaScript=/^[ \t]*function ([A-Z]+[A-Za-z0-9_]*)/\1/o,object/
+</pre>
+<small>Note: This does a pretty good job but still misses out on some things. Javascript has surprisingly complicated declarations. I'm working to improve it.</small>
+
+	For JSLint, I assume you downloaded some version of jslint that you can run with rhino or whatever. <b> In ~/.vimrc</b>, put the following:
+
+<pre>
+:map &lt;F7&gt; :w&lt;CR&gt;:!rm OUT_TEMP&lt;CR&gt;:!rhino jslint.js &gt; OUT_TEMP&lt;CR&gt;:split OUT_TEMP&lt;CR&gt;
+</pre>
+When you press F7, this runs jslint, dumps it into a temporary file, and then opens it up in a new buffer. Then you can scroll through and have your <a href="http://www.jslint.com">feelings hurt</a>. You can tweak the !rhino line to use node or whatever you cool kids are doing these days.
+
+<b> A cute extra: Running taglist on startup. </b> 
+
+You can't put <code> :TlistToggle </code> in your .vimrc, because Taglist hasn't loaded yet, so the command is unrecognized. The fix is to do this instead:
+
+<pre>
+autocmd VimEnter *.js TlistToggle
+</pre>

@@ -6,40 +6,33 @@
   <title>johnfn's blog @ GitHub</title>
 
   <link rel="stylesheet" type="text/css" href="style.css" />
-
 </head>
 
 <body>
   <div id="container">
-    <h1><a href="index.html" style="text-decoration:none">Neat</a>
-      <span class="small">by johnfn. This collection of neat stuff is <a href="http://github.com/johnfn/johnfn">a github repository</a>. </span></h1>
+		<h1><a href="index.html" style="text-decoration:none">blog|<span class="flat">neat</span></a>
+      <span class="small" style="float:right">by johnfn. This is <a href="http://github.com/johnfn/johnfn">a github repository</a>, generated from flat text files. It's pretty neat. And open source. Check it out! </span></h1>
     <div class="post">
       <div class="title">
 				Using Vim with JavaScript, JSLint and Taglist
+
       </div>
       <div class="date"> 
 				Thursday, June 16, 2010
+
       </div>
       <div class="body">
-<p>
-Two awesome tools, an awesome language, and JSlint... ;) Unfortuantely, it's not straightforward to get them to work together. This is my configuration. I'm going to assume you've installed taglist in VIM.
-</p>
+				<p>Two awesome tools, an awesome language, and JSlint... ;) Unfortuantely, it's not straightforward to get them to work together. This is my configuration. I'm going to assume you've installed taglist in VIM.
 
-<p>
-	<b> In ~/.vimrc</b>, put the following:
-</p>
-<p>
-<pre>
+</p> <p>	<b> In ~/.vimrc</b>, put the following:
+
+</p> <p><pre>
 let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:function'
 </pre>
-</p>
 
+</p> <p><b> In ~/.ctags</b>, put the following:
 
-<p>
-	<b> In ~/.ctags</b>, put the following:
-</p>
-<p>
-<pre>
+</p> <p><pre>
 --regex-JavaScript=/^var[ \t]+([a-zA-Z0-9_$]+) = \[/\1/a,array/
 --regex-JavaScript=/^var[ \t]+([a-zA-Z0-9_$]+) = \{/\1/o,object/
 --regex-JavaScript=/^var[ \t]+([a-zA-Z0-9_$]+) = (^{^[)+/\1/r,var/
@@ -49,78 +42,38 @@ let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:
 --regex-JavaScript=/^[ \t]*function ([A-Z]+[A-Za-z0-9_]*)/\1/o,object/
 </pre>
 <small>Note: This does a pretty good job but still misses out on some things. Javascript has surprisingly complicated declarations. I'm working to improve it.</small>
-</p>
 
-<p>
-	For JSLint, I assume you downloaded some version of jslint that you can run with rhino or whatever. <b> In ~/.vimrc</b>, put the following:
-</p>
-<p>
-<pre>
+</p> <p>	For JSLint, I assume you downloaded some version of jslint that you can run with rhino or whatever. <b> In ~/.vimrc</b>, put the following:
+
+</p> <p><pre>
 :map &lt;F7&gt; :w&lt;CR&gt;:!rm OUT_TEMP&lt;CR&gt;:!rhino jslint.js &gt; OUT_TEMP&lt;CR&gt;:split OUT_TEMP&lt;CR&gt;
 </pre>
 When you press F7, this runs jslint, dumps it into a temporary file, and then opens it up in a new buffer. Then you can scroll through and have your <a href="http://www.jslint.com">feelings hurt</a>. You can tweak the !rhino line to use node or whatever you cool kids are doing these days.
-</p>
 
-<p>
-<b> A cute extra: Running taglist on startup. </b> 
-</p>
-<p>
-You can't put <code> :TlistToggle </code> in your .vimrc, because Taglist hasn't loaded yet, so the command is unrecognized. The fix is to do this instead:
-</p>
-<p>
-<pre>
+</p> <p><b> A cute extra: Running taglist on startup. </b> 
+
+</p> <p>You can't put <code> :TlistToggle </code> in your .vimrc, because Taglist hasn't loaded yet, so the command is unrecognized. The fix is to do this instead:
+
+</p> <p><pre>
 autocmd VimEnter *.js TlistToggle
 </pre>
-</p>
 
-<p>
-	&nbsp;
-</p>
-<p>
-	&nbsp;
-</p>
-<p>
-	&nbsp;
-</p>
-<p>
-	 You should follow me on twitter <a href="http://twitter.com/thedayturns">here.</a>
-</p>
+				<p> </p>
+				<p> </p>
+				<p> </p>
+				<p>
+					 You should follow me on twitter <a href="http://twitter.com/thedayturns">here.</a>
+				</p>
       </div>
 
 
-      <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://johnfn.github.com/johnfn/post1.html"></a>
-      <noscript><a href="http://flattr.com/thing/285952/Are-you-a-technical-person" target="_blank">
-      <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
       <a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="thedayturns">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
       <iframe src="http://www.facebook.com/plugins/like.php?app_id=170533823007150&amp;href&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
-
-      <div class="disqus">
-
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'githubblog'; // required: replace example with your forum shortname
-
-            var disqus_identifier = 'post1';
-            var disqus_url = 'http://johnfn.github.com/johnfn/post1.html';
-
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-
-      </div>
     </div>
 
     <div class="footer">
-      Words written by <a href="http://twitter.com/thedayturns/">Grant Mathews</a>. You may use my permutation of these words only for Good, not Evil. You can use my CSS for both- but seriously, good luck.
+			{{ FOOTER }}
     </div>
-
   </div>
 </body>
 </html>
