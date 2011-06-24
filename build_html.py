@@ -5,17 +5,25 @@ import re
 
 #TODO: Description file for 'neat' 'design' etc.
 #TODO: Date created. This indicates i have to store some metadata about the file.
+#TODO: Should be some notion of order, so that index can be ordered generally.
 
 """
-Builds html files (blog entries) out of the skeleton SKELETON and plaintext of the form (for example) design1, design2.
 
-Assumes that all files in the directory that end in numbers are blog posts. I can't imagine when this would ever turn out to be a bad thing...
+You make files of the form [somename]1, [somename]2, etc. You also make a file just called [somename].
+
+The file [somename] contains a (typically) one line description of the rest of the similarly named files. It is used in the index page to describe them.
+
+The files like [somename]1 contain HEADING: followed by lines of text. HEADING is, for example, the title, or the body. The skeleton file is rendered as a template, with {{ HEADING }} being replaced with the lines of text. 
 """
 
-INDEX = "index2.html"
-SKELETON = "skeleton.html"
-ENTRY_DIR = "entries/"
-OUTPUT_DIR = ""
+# Constants
+
+INDEX = "index.html" # Name of the index file
+SKELETON = "skeleton.html" # Name of the skeleton file
+ENTRY_DIR = "entries/" # Where are the entries?
+OUTPUT_DIR = "" # Where to output the entries?
+
+# Utility functions
 
 def get_all_types(directory):
 	""" Finds all words such that word1 exists in the current directory. """
@@ -27,8 +35,6 @@ def get_all_types(directory):
 			types.append(file[:-1])
 
 	return types
-
-types = get_all_types(ENTRY_DIR)
 
 def file_of_type(type, num):
 	return "%s%d" % (type, num)
@@ -63,6 +69,8 @@ def render_template(template, sections):
 	
 	return template
 
+# The big function
+
 def process_files(type):
 	""" Creates each file of type TYPE. Returns a list of tuples of the form (created_file, title). """
 	built_files = []
@@ -72,7 +80,8 @@ def process_files(type):
 
 	# Check each file until one doesn't exist. design1, design2...
 	while os.path.exists(ENTRY_DIR + file_of_type(type, num)):
-		sections = {} #Each section of the file.
+		# TODO: TOP is a hack just for the index. Remove eventually.
+		sections = { "TOP" : "" } #Each section of the file.
 		current_section = ""
 		paragraphed = False #Should we surround each para in <p> tags?
 		result_file = file_of_type(type, num) + ".html" #Where we're writing to.
@@ -117,23 +126,49 @@ def process_files(type):
 	
 	return built_files
 
-def generate_all_files():
-	body = ""
-	#Generate the index page
-	for type in types:
-		#TODO: Get title here somehow.
-		body += "<ol reversed>"
-		files_created = process_files(type)
-		files_created = ["<li><a href='%s'>%s</a>" % (f[0] + ".html", f[1]) for f in files_created]
-		body += "\n".join(files_created)
-		body += "</ol>"
-	
+def generate_index_chunk(files, type):
+	""" Generate one of the lists on the index. """
+	body = "" #section of the index
+	desc = "".join([l for l in open(ENTRY_DIR + type)]) #description of this type of file
+
+	body += "<p> %s </p>" % (desc)
+	body += "<ol reversed>"
+
+	files = ["<li><a href='%s'>%s</a>" % (f[0], f[1]) for f in files]
+
+	body += "\n".join(files)
+	body += "</ol> <p> </p>"
+
+	return body
+
+def get_index_sections(body):
+	""" Build sections of index for templatizing. """
 	sections = {}
+
+	sections = {}
+	sections["TOP"] = """
+			Thoughts.
+      <ol reversed> <!-- super sexy html5 -->
+        <li><a href="post2.html"> Be direct. </a> (Under construction)
+        <li><a href="post1.html"> Are you a technical person? </a>
+      </ol>"""
 	sections["BODY"] = body
 	sections["POSTTYPE"] = "index"
 	sections["TITLE"] = "johnfn's blog"
 	sections["FOOTER"] = "Nothing to see here. Move along, citizen."
 	sections["NOTWITTER"] = True
+
+	return sections
+
+
+def generate_all_files():
+	body = ""
+	#Generate the index page
+	for type in get_all_types(ENTRY_DIR):
+		files_created = process_files(type)
+		body += generate_index_chunk(files_created, type)
+	
+	sections = get_index_sections(body)
 
 	index = render_template("\n".join([l for l in open("skeleton.html")]), sections)
 
