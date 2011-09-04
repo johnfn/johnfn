@@ -1,7 +1,7 @@
 TITLE:
 Using Vim with JavaScript, JSLint and Taglist
 DATE:
-Thursday, June 16, 2010
+Thursday, June 16, 2011
 BODY:
 Two awesome tools, an awesome language, and JSlint... ;) Unfortuantely, it's not straightforward to get them to work together. This is my configuration. I'm going to assume you've installed taglist in VIM.
 

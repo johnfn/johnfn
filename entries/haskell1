@@ -1,0 +1,12 @@
+TITLE:
+Haskell
+
+BODY:
+Still don't fully understand the IO Monad. How come `somename <- getLine` has to be extracted specially with `<-`? How come there can't be some op with type `IO String -> String`?
+
+On the other hand, really liking the strict typing, although it takes a while to get stuff right.
+
+Apparent inconsistency: How come if a key in a map is (Int, Int) the type of the map is `Map (Int, Int) Int` without a comma after the `)`?
+
+FOOTER:
+C'est ne pas une footer.

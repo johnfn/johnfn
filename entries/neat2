@@ -1,0 +1,12 @@
+TITLE:
+Vim and Clojure
+DATE:
+July 18, 2011
+BODY:
+
+If you use VimClojure, this little macro may change your life. Stick it in your ~/.vimrc:
+<pre>
+:map \sb va(y<C-W>jG$pG$i<CR><ESC><C-W>k
+</pre>
+
+Put the cursor over any form, and type \sb. Boom! The form is visibly evaluated in the REPL. 
