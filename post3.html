@@ -60,37 +60,36 @@
       </div>
       <div class="body">
         <p>
-          I've always been disappointed with articles that say, for instance, "I just learned X programming language 1 day ago, and it's amazing because X Y Z." How can anyone evaluate a language in a single day, or even a week? Programming languages are big, complex organisms that require thought.
+          I've been seeing articles that say, for instance, "I just learned X programming language 1 day ago, and it's amazing because X Y Z." How can anyone evaluate a language in a single day, or even a week? Programming languages are big, complex organisms that require thought.
         </p>
         <p>
-          So I'm writing this article after 3 months of learning Clojure. Arguably, 3 months isn't even enough, but I feel like I'm far enough along to give some basic evaluations.
+          So I'm writing this article after 3 months of learning Clojure. Maybe 3 months isn't even enough, but I've written a fair amount of Clojure now, and I feel like I'm far enough along to give some basic evaluations.
         </p>
         <p>
           <h3> The Good </h3>
         </p>
           <ul>
-            <li> <b>The JVM.</b> <p>This is definitely the best feature of Clojure, the thing that elevates it from Yet Another Lisp to a practical language. You have all of Java's libraries at your fingertips, and Java has more than almost any other language.</p> 
-            <p>Additionally, the JVM puts a low upper bound on how slow your code will be, which is great. It means that, without almost any effort, Clojure is [[LINK]] only about 4 times slower than C.</p>
+            <li> <b>The JVM.</b> <p>This is definitely the best feature of Clojure, the thing that elevates it from Yet Another Lisp Variant to a practical language. You have all of Java's libraries at your fingertips, and Java has more than almost any other language.</p> 
+            <p>Additionally, the JVM puts a low upper bound on how slow your code will be, which is great. It means that, without almost any effort, Clojure is <a href="http://shootout.alioth.debian.org/u64q/which-programming-languages-are-fastest.php?gcc=on&clojure=on&calc=chart">only about 5 times slower than C</a>.</p>
 
-            <li> <b>Hot-swapping code.</b> <p>Even though Lisp is 50 years old, this still feels like pure magic. You can run a program, send individual functions to be swapped in during runtime, and <i> maintain state while doing so</i>. Iteration cycles drop dramatically. It's gradually gaining adoption in other languages, which is excellent news. [[LINK]]</p>
+            <li> <b>Hot-swapping code.</b> <p>Even though Lisp is 50 years old, this still feels like pure magic. You can run a program, send individual functions to be swapped in during runtime, and <i> maintain state while doing so</i>. Iteration cycles drop dramatically. It's gradually gaining adoption in other languages, which is excellent news. (<a href="http://pypi.python.org/pypi/hotswap/0.1">For example, here's a python hot-swapping module.)</a></p>
 
           </ul>
         <p>
           <h3> The Ambiguous </h3>
-        </p>
-          <p>
-          <li> <b>It's a Lisp.</b> <p>There's never been a language quite as controversial as Lisp. Some people love it for it's beauty, and some people derail it for it's syntax (those parens!). You've probably formed your own opinions about this one already. Personally, I think that the syntax <i>is</i> pretty elegant, but even after 3 months I still found it difficult to read at times. I guess I still haven't reached the promised enlightenment. </p>
+
+          <ul>
+          <li> <b>It's a Lisp.</b> <p>There's never been a language quite as controversial as Lisp. Some people love it for its beauty, and some people derail it for its syntax (those parens!). You've probably formed your own opinions about this one already. Personally, I think that the syntax <i>is</i> pretty elegant, but even after 3 months I find it difficult to read at times. I guess I still haven't reached the promised enlightenment. </p>
           </p>
 
-          <li> <b>It's (almost) pure functional.</b> <p>Again, this one's up for you to decide. As my first functional language, I found Clojure code to be - generally - more beautiful than imperative equivalents, but more difficult to write. Even 3 months in, I'm finding that some concepts are very difficult to express in a pure functional way. Again, I'm not sure if this is just a lack of understanding, or a flaw in functional programming, and I don't think I'm experienced enough to say either way.</p>
-        <p>
+          <li> <b>It's (almost) pure functional.</b> <p>Again, this one's up for you to decide. As my first functional language, I found Clojure code to be - generally - more beautiful than imperative equivalents, but more difficult to write. Even 3 months in, I'm finding that some concepts are very difficult to express in a pure functional way. Again, I'm not sure if this is a lack of understanding, a difficulty in functional programming, and I don't think I'm experienced enough to say either way.</p>
+        </ul>
           <h3> The Bad </h3>
-        </p>
           <ul>
             <li> <b>Error messages.</b> <p>This is definitely the worst part of Clojure for me - the thing that, in my opinion, makes the language significantly less usable. I've seen things like <code>NullPointerException at line 0</code> or hundred line long stack traces that never appear to touch my code. The NullPointerExceptions are really nasty, and the only real recourse is to comment out parts of your code. The stack traces are better, but require a lot of obscure knowledge. I hopped on IRC one time to ask about one, and they told me that certain words meant that there was an error in my macro, other things meant the stack had gone through a call of apply, etc.</p>
             <p>I'm not sure how you are supposed to pick that kind of information up. Worse, error messages can sometimes interfere with the code hot-swapping cycle and require you to restart in order to fix them.</p>
 
-            <li> <b>Documentation.</b> <p> As to be expected in a language so young, documentation is pretty scrappy. <code>doc-find</code>, <code>doc</code> in the REPL are invaluable. Outside, <a href="http://clojuredocs.org/">clojuredocs</a> is nice, but needs more attention. The definitive <a href="http://clojure.org/Reference"> clojure reference</a> is solid too, if a bit laconic. Eventually, I turned to just reading the Clojure source, which probably taught me more than the other sources combined. </p>
+            <li> <b>Documentation.</b> <p> As to be expected in a language so young, documentation is pretty scrappy. <code>doc-find</code>, <code>doc</code> in the REPL are invaluable. Outside, <a href="http://clojuredocs.org/">clojuredocs</a> is nice, but needs more attention. The definitive <a href="http://clojure.org/Reference"> clojure reference</a> is solid too, if a bit laconic. Eventually, I turned to just reading the Clojure source, which probably taught me more than the other sites combined. </p>
 
             <li> <b>The JVM.</b> <p>It's truly a double edged sword. That startup time is just painful, and to me it means that unless Clojure can run the JVM in the background by default, Clojure will never be a good command line language. Leiningen (the Clojure build tool) is written in the JVM, and on my machine it always takes 5 seconds just to start. <code> time lein </code> shows about 10 seconds to display all the output, and then it hangs for about a minute more before the process completes. Ouch. </p>
 
@@ -101,17 +100,40 @@
           <h3> Conclusions </h3>
         </p>
         <p>
-          Is Clojure ready for production? For me, <b>no.</b> 
+          Is Clojure ready for production? For me, after a lot of thought, <b>no.</b> The error messages are the show stopper for me; I've spent upwards of hours debugging obscure issues. But even still, I don't think that the time learning it was wasted. Clojure is a clever language, with interesting approaches to old problems (I didn't even get to talk about concurrency, for instance). I'd recommend taking some time to check it out - hopefully more than a week. :)
         </p>
+        <p> &nbsp; </p>
+        <p> &nbsp; </p>
+        <p> &nbsp; </p>
         <p>
-           You should follow me on Github <a href="https://github.com/johnfn">here.</a>
+           You should watch this blog (a Github repository) <a href="https://github.com/johnfn/johnfn">here.</a>
         </p>
       </div>
     </div>
 
     <div class="footer">
-      Words written by <a href="http://twitter.com/thedayturns/">Grant Mathews</a>. You may use my permutation of these words only for Good, not Evil. You can use my CSS for both- but seriously, good luck.
+      Words written by <a href="www.github.com/johnfn">johnfn</a>.
     </div>
+
+  <div class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'githubblog'; // required: replace example with your forum shortname
+
+        var disqus_identifier = 'post3';
+        var disqus_url = 'http://johnfn.github.com/johnfn/post3.html';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
 
   </div>
 </body>
