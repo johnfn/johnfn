@@ -1,0 +1,39 @@
+The problem with lots of code is that the way people normally write code doesn't scale. That is, writing lines 0-1000 is always easier than writing lines 50000-51000. As a code base gets bigger and bigger, it becomes more and more difficult to tack on new features.
+
+So how do you write code that scales? 
+
+Well, to answer that question we first have to figure out why the code we write doesn't scale. 
+
+One of the most common cited sources: Unexpected interactions between modules. In the game that I made for Ludum Dare (a recent game dev competition), I had two features that were, I felt, fairly separate. One of them was that you could leave a dead body behind - so you could step on it, or jump off of it, etc - it acted like a wall. The other was that, when you got hurt, you were automatically teleported to the start of the room, and your sprite flickered. The interaction I never expected was that if you left a dead body where you would teleport to, and then got hurt, you'd get stuck inside your dead body! (ugh)
+
+So is that it then? As you add more features, unexpected interactions increase as O(n^2) where n is the number of features, and we may as well give up and go home? Not really. Look at my example again: the real problem is that I didn't build up a good enough abstraction in the first place. Shouldn't the player's move_to method be aware of collisions, instead of just blindly placing him wherever the game felt pertinent? Shouldn't the player, if placed inside of a wall, be moved towards a best-guess approximation? That's certainly better than nothing.
+
+So the real problem isn't unexpected interactions. It's interactions that aren't abstracted correctly.
+
+But how can we expect every programmer to make perfect abstractions? That's a ridiculous pipe dream. Programmers are still human and still make oversights. 
+
+Yeah, that's true. But we can certainly do better by forcing coders to write at least ostensibly correct abstractions. Back to my example. Say your game character has a move_to(x, y) method that can be called from wherever. Then what should happen is testing. There should be a test case that generates random maps and tries to call move_to(x, y) for every point on that map and checks for stuff like infinite loops, game crashes, etc. You run that puppy for a little bit and when it finishes you know that move_to is perfect from a practical perspective. 
+
+But Grant, you say, you've just shifted the burden from programmers writing perfect abstractions to programmers writing perfect test cases. Plus, that sounds like a serious burden on the coder. Even so, what you're arguing still isn't practically possible, because programmers are human.
+
+Is that actually true, though? Say that we changed move_to a little, and specified some contraints on it like so:
+
+<pre>
+# 0 <= x <= screen_width
+# 0 <= y <= screen_height
+# map should be a grid of 0's and 1's (0's representing floor, 1's representing walls)
+def move_to(x, y, map):
+</pre>
+
+Now what have we done? Well, the testing of move_to can now be automated. A preprocessor could run through your program, check for constraints, and generate zillions of test cases within the boundaries of those constraints, and run them all. And sure, maybe there's an incredibly rare bug that even preprocessing misses if there are 1s in the 17th and 34th columns or something obscure, but I think this strategy is good enough to prove our programs are correct from a practical standpoint. 
+
+Can constraint-based testing save us from complexity? I don't know. But I think it can definitely push us in the right direction. 
+
+
+
+Note: This (test case generation) can happen because move_to is a pure function; i.e. it is not dependent on any state except its arguments, and, if given the same arguments, it returns the same value every time it executes. A nice argument for functional programming, even if I didn't intend to argue that from the start.
+
+Another note: This was written all in one go, with no real planning, so apologies if it came off discursive.
+
+Fun fact: Constraint based programming exists (I found it on Wikipedia just now), but I dunno if anyone has taken it in the direction of tests. I also know of QuickCheck in Haskell which generates random test cases, but seems to do it opposite of the way I proposed: it checks constraints on the output of functions, rather than on the inputs.
+
