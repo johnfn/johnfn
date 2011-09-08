@@ -4,9 +4,15 @@ Haskell
 BODY:
 Still don't fully understand the IO Monad. How come `somename <- getLine` has to be extracted specially with `<-`? How come there can't be some op with type `IO String -> String`?
 
+>> I figured this one out. The reason that it needs to be extracted in a special way is because, when you think about it Monad-like, the `a <-` is sort of like wrapping the rest of the function in a lambda that takes argument `a` and calling that lambda with the 'extracted' value. This means that each extracted value needs a name.
+
+>> Sorta kinda. Because we still have stuff like `mapM`, `sequence`, etc...
+
 On the other hand, really liking the strict typing, although it takes a while to get stuff right.
 
 Apparent inconsistency: How come if a key in a map is (Int, Int) the type of the map is `Map (Int, Int) Int` without a comma after the `)`?
+
+Confusion: Why do we have all these crazy operators like <*>? Seems like a lot of cavorting just to do stuff inside of an applicative functor, esp. since you can just extract it out and use normal operators. I understand Haskell is uber strongly typed, but isn't there a better solution to this than "throw more operators at it"? On the other hand, I haven't really seen <*> in practice (not that I've hunted around much), so maybe it's just academic. I dunno.
 
 FOOTER:
 C'est ne pas une footer.
