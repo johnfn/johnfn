@@ -1,3 +1,9 @@
+TITLE:
+The Problem with Lots of Code
+DATE:
+Written August 30, 2011. Pushed September 8, 2011.
+BODY:
+
 The problem with lots of code is that the way people normally write code doesn't scale. That is, writing lines 0-1000 is always easier than writing lines 50000-51000. As a code base gets bigger and bigger, it becomes more and more difficult to tack on new features.
 
 So how do you write code that scales? 
@@ -37,3 +43,5 @@ Another note: This was written all in one go, with no real planning, so apologie
 
 Fun fact: Constraint based programming exists (I found it on Wikipedia just now), but I dunno if anyone has taken it in the direction of tests. I also know of QuickCheck in Haskell which generates random test cases, but seems to do it opposite of the way I proposed: it checks constraints on the output of functions, rather than on the inputs.
 
+FOOTER:
+What's up?
