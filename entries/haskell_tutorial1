@@ -16,21 +16,27 @@ Isn't that amazing! Didn't you always want to add 1 to each element of an array,
 
 If you're anything like me, the answer is <i>no</i>. No, I really wasn't in the mood for adding 1 to each element of an array, let alone summing it afterwards. I can't think of why I'd want to do that in the first place.
 
-Haskell (and FP) tutorials are just too abstract.
+I learn by doing. I've learned the most about a language when I just sit down and make something awesome with it.
 
-It's not their fault, though. Let's step back and see what the reason is.
+And for me, Haskell (and FP) tutorials are just too abstract.
+
+It's not their fault, though. Let's see what the reason is.
+
+<b> Why are non-FP tutorials better? </b>
 
 The great thing about OOP is that it namespaces functions really well. So, if you ever want to find some string-related method, just look at the String object, and boom! There they are. Arrays? Yep, Array class. This is awesome for learning the language, because you have a place to start.
 
-Functional programming languages, on the other hand, can feel filled with tons of random functions. This is pretty much the point of a functional language. I mean, it's in the name! FUNCTIONAL Language! What do you expect? Not-functions? That'd be some other paradigm.
+<b> And what's wrong with FP tutorials? </b>
+
+Functional programming languages can feel like they're filled with tons of random functions. It can even feel like that's the <i>point!</i> I mean, it's in the name! FUNCTIONAL Language! What do you expect? Not-functions? That'd be some other paradigm.
 
 And so when you try to learn a functional language, people will throw this massive amount of functions at you, because that's clearly the point! Right? 
 
 And since they're so decontextualized, we may as well present them in their purest, most abstract state. 
 
-And then somehow we've gotten into really bad examples like the first code sample that don't help people like me learn.
+And now we're writing examples like the first code sample that don't help people like me learn.
 
-Even worse, this gives functional programming a bad rap, because people tend to think of it in terms of obscure mathematical functions.
+Even worse, this gives functional programming a bad rap. Because people only see examples in super abstract mathematical functions, they tend to think of those languages in those terms: obscure, mathematical, abstract. Even scary.
 
 But I'm here to change all of that! 
 
