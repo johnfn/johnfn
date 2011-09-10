@@ -28,7 +28,7 @@ The great thing about OOP is that it namespaces functions really well. So, if yo
 
 <b> And what's wrong with FP tutorials? </b>
 
-Functional programming languages can feel like they're filled with tons of random functions. It can even feel like that's the <i>point!</i> I mean, it's in the name! FUNCTIONAL Language! What do you expect? Not-functions? That'd be some other paradigm.
+Functional programming languages can feel like they're filled with tons of random functions. It can even feel like that's the <i>point!</i> I mean, it's in the name! FUNCTIONAL languages! What do you expect? Not-functions? That'd be some other paradigm.
 
 And so when you try to learn a functional language, people will throw this massive amount of functions at you, because that's clearly the point! Right? 
 
@@ -44,3 +44,5 @@ Now let's go make something cool with Haskell.
 
 FOOTER:
 What? What's a footer? This isn't a footer, is it?
+
+NOTWITTER:
