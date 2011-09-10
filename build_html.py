@@ -135,12 +135,12 @@ def desanitize_filename(file_name):
   return file_name.replace("_", " ")
 
 def generate_index_chunk(files, type):
-	""" Generate one of the lists in index.html """
-	body = "" #section of the index
-	desc = "".join([l for l in open(ENTRY_DIR + type)]) #description of this type of file
+  """ Generate one of the lists in index.html """
+  body = "" #section of the index
+  desc = "".join([l for l in open(ENTRY_DIR + type)]) #description of this type of file
 
-	body += "<p> %s </p>" % (desanitize_filename(desc))
-	body += "<ol reversed>"
+  body += "<p> %s </p>" % (desanitize_filename(desc))
+  body += "<ol reversed>"
 
   files = ["<li><a href='%s'>%s</a>" % (f[0], f[1]) for f in files]
 
@@ -171,20 +171,20 @@ def get_index_sections(body):
 
 
 def generate_all_files():
-	body = ""
-	#Generate the index page
-	for type in get_all_types(ENTRY_DIR):
-		files_created = process_files(type)
-		body += generate_index_chunk(files_created, type)
-	
-	sections = get_index_sections(body)
-	index = render_template("\n".join([l for l in open("skeleton.html")]), sections)
+  body = ""
+  #Generate the index page
+  for type in get_all_types(ENTRY_DIR):
+    files_created = process_files(type)
+    body += generate_index_chunk(files_created, type)
+  
+  sections = get_index_sections(body)
+  index = render_template("\n".join([l for l in open("skeleton.html")]), sections)
 
-	if os.path.exists(INDEX):
-		os.unlink(INDEX)
-	
-	index_file = open(INDEX, 'w')
-	index_file.write(index)
+  if os.path.exists(INDEX):
+    os.unlink(INDEX)
+  
+  index_file = open(INDEX, 'w')
+  index_file.write(index)
 
 # I can't imagine when this wouldn't be the case...
 if __name__ == "__main__": 
