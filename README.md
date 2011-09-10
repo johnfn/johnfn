@@ -26,3 +26,7 @@ Write a blog description post and a blog post.
 `cd ..` (into the main repo directory) and run `build_html.py`.
 
 Done. You can now push to git and host your own blog!
+
+**Warning!**
+
+build\_html contains a little bit of a hack inside get\_index\_sections, where it has the index TOP (blog posts) hardcoded in instead of reading from a file. I may eventually take this out, if there's any interest. 
