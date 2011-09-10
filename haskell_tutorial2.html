@@ -81,7 +81,7 @@ main = do
 
 </p> <p>That's true. To Haskell, constants and functions are actually one and the same. Haskell is smart enough to know that if a function only returns one value, then it should be treated like a constant. 
 
-</p> <p>As for the `let`, for now we'll say that that's how you define functions inside of `do` blocks. In a bit, you'll see that there is a tiny difference between `do` code and non-`do` code. TODO: Is it really?
+</p> <p>As for the `let`, for now we'll say that that's how you define functions inside of `do` blocks. In a bit, you'll see that there is a tiny difference between `do` code and non-`do` code. --TODO: Is it really?
 
 </p> <p><b> ++ </b>
 
@@ -101,6 +101,146 @@ main = do
 </p> <p><pre>
 Prelude> let x = 5
 </pre>
+
+</p> <p>--TODO: This explanation of ghci probably deserves to be in another place. Or at least wrapped in a nice div...
+
+</p> <p>Hold your horses, you cry. What the heck is ghci?! What did I just do?
+
+</p> <p>If you've ever programmed in a language with a REPL before, you can skip this part. Otherwise, read on!
+
+</p> <p>A REPL (stands for read-eval-print-loop) is a great way to test out writing some code without going through the whole make and build process. What it does is allow you to write one line of code at a time and see the output immediately. Try booting up ghci right now, so you can see what I'm talking about.
+
+</p> <p><pre>
+Prelude> 1 + 1
+>> 2
+</pre>
+
+</p> <p>--TODO: Double sidebar?
+
+</p> <p>The stuff you type into ghci comes after Prelude>. To be clear, I've chosen to show what it gives back with >> even though ghci doesn't use those.
+
+</p> <p>Anyway, isn't that cool? You typed in 1 + 1 and it returned 2. I mean, you probably knew that already, but isn't it neat that you can get your computer to do it for you?
+
+</p> <p>--TODO: Back to book
+
+</p> <p>Now, remember what I said about `do`, and how great it was for imperative programming and output stuff? Now, pure functional programming is great and all, but it would be really lame if ghci didn't let you do any input or output! So the smart Haskell guys decided that all of ghci should run inside a do block.
+
+</p> <p>And that explains why your function definitions have to be declared with a let.
+
+</p> <p>Now, let's get back to typing. Follow along in ghci, or just read what I do if you're lazy:
+<pre>
+Prelude> :type x
+x :: Integer
+</pre>
+
+</p> <p>Wow, cool! I asked ghci for the type of x, and it knew it was an integer, even though I didn't tell it!
+
+</p> <p><div class="tinysidebar">
+`:type` is a special command that is only available in ghci. You can also abbreviate it to :t if you're using it a lot.
+</div>
+
+</p> <p>Yeah, that's pretty cool, but try this on for size:
+
+</p> <p><pre>
+Prelude> let getHelloMessageFor someName = "Hello, " ++ someName ++ "!"
+Prelude> :type getHelloMessageFor
+getHelloMessageFor :: [Char] -> [Char]
+</pre>
+
+</p> <p>You can read that like so: Given a Char array (remember, we said earlier that those are just strings), it'll give back a char array. That's impressive, though, isn't it? How could it possibly know that someName was a [Char]? 
+
+</p> <p>(Think about that a little bit before reading on.)
+
+</p> <p>The answer is that Haskell is very smart. It noticed that you were ++ing someName with some other strings, and logically deduced that someName must also be a string, since if you're ++ing two things together they have to be of the same type. Cool, huh?
+
+</p> <p>So the takeaway here is that Haskell is really smart, and it can figure out (it's called typer inference if we wanna get fancy) the types of just about any expression that you throw at it. If you want, you can annotate your functions with the correct type information ahead of time, like so:
+
+</p> <p>(Imagine that this is in some haskell file, not in ghci.)
+<pre>
+myFunc :: Int -> Int
+myFunc x y = x + y
+</pre>
+
+</p> <p>I would recommend doing this when starting out, because sometimes if you use the wrong syntax to do something then Haskell could infer the wrong type and give you weird errors. 
+
+</p> <p>
+</p> <p>
+</p> <p>Back to types. So there's something in Haskell called IO. If you hop into ghci and make a function that does IO, you might notice it:
+
+</p> <p><pre>
+Prelude> let sayHi = do putStrLn "Hi!"
+Prelude> :t sayHi
+sayHi :: IO ()
+</pre>
+
+</p> <p>IO is essentially like saying "Hey Haskell, this function does some IO. Maybe putStrLn, maybe getLine. Maybe it even reads a file. I dunno!" 
+
+</p> <p>The trick is that functions with the IO type can't be called from functions that aren't IO. Although the specifics have to come later, we can get a good intuition right now. You see, Haskell prides itself on forcing you to write <i>pure functional</i> functions. That means that if I call `someFunc 5` and it gives me `12` the first time, and I keep doing that over and over again with 5 every time, it's never going to give me anything other than 12. 
+
+</p> <p>But what about `getLine`? If I call `getLine` 5 times, no matter how hard you try, you're not going to be able to force the user of your program to type in the same thing 5 times, unless you have really weird users. 
+
+</p> <p>So at this point, you're probably like, "Aha! `getLine` violates pure functional principals! Haskell Curry was a total fraud!"
+
+</p> <p>Ah, but Haskell has a card up its sleve. Remember, functions only return the same values <i>if they have the same arguments passed to them every time.</i> And even though you don't <i>appear</i> to be passing anything into getLine, the IO that you noticed was part of your argument list is sneakily getting inserted into the call every time you make it. So the call <i>is</i> different every time, which is why it can return different results! (Haskell Curry cackles from behind the grave.)
+
+</p> <p>What is this mysterious IO type that seems to be changing every time we look at it? Well, the simplest conceptual model of it is to think of it as the <i>world</i>. --TODO: Yikes, that's not simple at all!
+
+</p> <p>
+</p> <p><b> Step 2: Take in some input. </b>
+
+</p> <p>Wouldn't it be a lot nicer if the program knew who it was greeting?
+
+</p> <p><pre>
+main = do
+  putStrLn "What's your name?"
+  str <- getLine
+  putStrLn "Hi, " ++ str
+</pre>
+
+</p> <p>Again, let's walk over the new syntax.
+
+</p> <p><b> getLine </b>
+
+</p> <p>This reads a line that the user types in.
+
+</p> <p><b> -> </b>
+
+</p> <p>This operator comes along with `do`, so you only gain access to this operator inside a function that starts with `do`. 
+
+</p> <p>
+</p> <p>
+</p> <p>
+</p> <p><b> BUT GRANT! THIS PROGRAM DOESN'T ACTUALLY WORK. DID YOU SPEND ANY TIME TESTING YOUR CODE AT ALL?!?</b>
+
+</p> <p>Oops.
+
+</p> <p><pre>
+test2.hs:3:2:
+    Couldn't match expected type `[a]' against inferred type `IO ()'
+    In the first argument of `(++)', namely `putStrLn "Hi!"'
+    In the expression: putStrLn "Hi!" ++ str
+    In the expression:
+        do { let str = "George";
+               putStrLn "Hi!" ++ str }
+</pre>
+
+</p> <p>Oh my God, that's terrifying, isn't it? Initially, Haskell error messages are really hard to understand. After some practice, though (oh, you'll get lots of practice, believe me), they'll start to become much more clear. 
+
+</p> <p>First, look at the top:
+
+</p> <p><pre>
+test2.hs:3:2:
+</pre>
+
+</p> <p>This means that the error occurred in the file `test2`, on line `3`, column `2`. 
+
+</p> <p>So what's the rest of the error saying?
+
+</p> <p>The way I think about these things is that they start really close to the error, and then they zoom out. 
+
+</p> <p>
+</p> <p>--TODO: I never explained how to install ghc or ghci.
+--TODO: I need to get a better place to host this than github... maybe?
 
 </p> <p></p>
 				<p> </p>
