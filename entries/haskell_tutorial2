@@ -1,0 +1,154 @@
+TITLE:
+Haskell Tutorial, pt. 1: 
+
+BODY:
+So, we're going to start off with the Fibonacci sequence...
+
+Nah, I'm just messing with you. Let's start off with a really simple program that plays the guessing game. You'll think of a number from 1-100, and the computer will try to guess it. I'll show you how I'd build this program up from scratch.
+
+<b> Step 1: Hello, world! </b>
+
+Let's start out with a simple greeting. It's always nice to be greeted by your computer, right?
+
+<pre>
+main = do
+  putStrLn "Sup?"
+</pre>
+
+Run it! If nothing bad happened, you'll get this:
+
+<pre>
+Sup?
+</pre>
+
+That was easy. Quick overview of what just happened: 
+
+<b> Main </b>
+
+`main` is the function where Haskell programs start.
+
+<b> do </b>
+
+`do` is special notation that I'll get into in another chapter or two, once we have a more solid understanding of Haskell. Right now, you should know two things about do:
+
+* Only use `do` in functions that do something with IO. (This is a half truth, as you can use `do` in other places too - but you wont do that for a while.)
+* `do` makes your code seem imperative - that is, in big do expressions your function structure looks similar to Java or C++. How is this possible in a functional language, you wonder? Think about how that could be. I'll explain in a bit.
+
+<b> putStrLn </b>
+
+Simple! Show some words on the screen.
+
+Or is it not so simple? putStrLn is the first time we've <i>called a function</i>. Since we're using a <i>functional</i> language, just filled with functions, the Haskell guys decided it better be as easy as possible. And it is! No parenthesis, no commas. Just `someFunction 1 2 3 4`. Ah, beauty!
+
+<b> Step 1.5: Take a bad guess at the user's name. </b>
+
+<pre>
+main = do
+  let yourName = "George"
+  putStrLn("Hi, " ++ yourName)
+</pre>
+
+Wouldn't it be great if your name was George? I bet I just freaked out all the Georges reading this tutorial. Sorry, George. I didn't mean to surprise you.
+
+What new syntax do we have?
+
+<b> let yourName = "George" </b>
+
+That's a function definition!
+
+"That's a function definition?" you ask quizzically. "Why does it start with `let`? The only function I ever defined was `main`, and I never said `let main = blabla`. It looks a lot more like a constant."
+
+That's true. To Haskell, constants and functions are actually one and the same. Haskell is smart enough to know that if a function only returns one value, then it should be treated like a constant. 
+
+As for the `let`, it's a quirk of `do` syntax. TODO: Is it really?
+
+<b> ++ </b>
+
+This joins two lists together. Into one MEGA LIST.
+
+But wait, you cry! How does it work on Strings? In Haskell, Strings - like "WAZZUP" - are just lists of characters.
+
+
+<b> Step 1.5: A brief interlude about types. </b>
+
+I've skirted around this issue enough!
+
+&lt;Insert comic of guy hiding the IO monad from his gf. It'll be hilarious, I promise.&gt;
+
+One of the big deals about Haskell is its super powerful type system. You've probably heard that before, but don't know what it means. Well, let's find out! Boot up ghci and type this in.
+
+<pre>
+Prelude> let x = 5
+</pre>
+
+Now, remember what I said about `do`, and how great it was for imperative programming and output stuff? Now, pure functional programming is great and all, but it would be really lame if ghci didn't let you do any input or output! So the smart Haskell guys figured that all of ghci should run inside a do block.
+
+
+
+
+
+So there's something in Haskell called the IO type. 
+
+
+
+
+<b> Step 2: Take in some input. </b>
+
+Wouldn't it be a lot nicer if the program knew who it was greeting?
+
+<pre>
+main = do
+  putStrLn "What's your name?"
+  str <- getLine
+  putStrLn "Hi, " ++ str
+</pre>
+
+Again, let's walk over the new syntax.
+
+<b> getLine </b>
+
+This reads a line that the user types in.
+
+<b> -> </b>
+
+This operator comes along with `do`, so you only gain access to this operator inside a function that starts with `do`. 
+
+
+
+
+<b> BUT GRANT! THIS PROGRAM DOESN'T ACTUALLY WORK. DID YOU SPEND ANY TIME TESTING YOUR CODE AT ALL?!?</b>
+
+Oops.
+
+<pre>
+test2.hs:3:2:
+    Couldn't match expected type `[a]' against inferred type `IO ()'
+    In the first argument of `(++)', namely `putStrLn "Hi!"'
+    In the expression: putStrLn "Hi!" ++ str
+    In the expression:
+        do { let str = "George";
+               putStrLn "Hi!" ++ str }
+</pre>
+
+Oh my God, that's terrifying, isn't it? Initially, Haskell error messages are really hard to understand. After some practice, though (oh, you'll get lots of practice, believe me), they'll start to become much more clear. 
+
+First, look at the top:
+
+<pre>
+test2.hs:3:2:
+</pre>
+
+This means that the error occurred in the file `test2`, on line `3`, column `2`. 
+
+So what's the rest of the error saying?
+
+The way to think about these things is that they start really close to the error, and then they zoom out. 
+
+
+TODO: I never explained how to install ghc or ghci.
+
+
+FOOTER:
+Footer? I barely know 'er!
+
+NOTWITTER:
