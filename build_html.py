@@ -31,7 +31,7 @@ def get_all_types(directory):
   files = os.listdir(directory)
 
   for file in files:
-    if re.match(r'^[a-zA-Z0-9]+1$', file):
+    if re.match(r'^[a-zA-Z0-9_]+1$', file):
       types.append(file[:-1])
 
   return types
