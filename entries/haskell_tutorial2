@@ -60,7 +60,7 @@ That's a function definition!
 
 That's true. To Haskell, constants and functions are actually one and the same. Haskell is smart enough to know that if a function only returns one value, then it should be treated like a constant. 
 
-As for the `let`, for now we'll say that that's how you define functions inside of `do` blocks. In a bit, you'll see that there is a tiny difference between `do` code and non-`do` code. TODO: Is it really?
+As for the `let`, for now we'll say that that's how you define functions inside of `do` blocks. In a bit, you'll see that there is a tiny difference between `do` code and non-`do` code. --TODO: Is it really?
 
 <b> ++ </b>
 
@@ -81,7 +81,7 @@ One of the big deals about Haskell is its super powerful type system. You've pro
 Prelude> let x = 5
 </pre>
 
-TODO: This explanation of ghci probably deserves to be in another place. Or at least wrapped in a nice div...
+--TODO: This explanation of ghci probably deserves to be in another place. Or at least wrapped in a nice div...
 
 Hold your horses, you cry. What the heck is ghci?! What did I just do?
 
@@ -94,13 +94,13 @@ Prelude> 1 + 1
 >> 2
 </pre>
 
-TODO: Double sidebar?
+--TODO: Double sidebar?
 
 The stuff you type into ghci comes after Prelude>. To be clear, I've chosen to show what it gives back with >> even though ghci doesn't use those.
 
 Anyway, isn't that cool? You typed in 1 + 1 and it returned 2. I mean, you probably knew that already, but isn't it neat that you can get your computer to do it for you?
 
-TODO: Back to book
+--TODO: Back to book
 
 Now, remember what I said about `do`, and how great it was for imperative programming and output stuff? Now, pure functional programming is great and all, but it would be really lame if ghci didn't let you do any input or output! So the smart Haskell guys decided that all of ghci should run inside a do block.
 
@@ -132,7 +132,7 @@ You can read that like so: Given a Char array (remember, we said earlier that th
 
 The answer is that Haskell is very smart. It noticed that you were ++ing someName with some other strings, and logically deduced that someName must also be a string, since if you're ++ing two things together they have to be of the same type. Cool, huh?
 
-So the takeaway here is that Haskell is really smart, and it can figure out (it's called typer inference if we wanna get fancy) the types of just about any expression that you throw at it. If you want, you can annotate your functions with the correct type information ahead of time, like so:
+So the takeaway here is that Haskell is really smart, and it can figure out (it's called type inference if we wanna get fancy) the types of just about any expression that you throw at it. If you want, you can annotate your functions with the correct type information ahead of time, like so:
 
 (Imagine that this is in some haskell file, not in ghci.)
 <pre>
@@ -162,7 +162,7 @@ So at this point, you're probably like, "Aha! `getLine` violates pure functional
 
 Ah, but Haskell has a card up its sleve. Remember, functions only return the same values <i>if they have the same arguments passed to them every time.</i> And even though you don't <i>appear</i> to be passing anything into getLine, the IO that you noticed was part of your argument list is sneakily getting inserted into the call every time you make it. So the call <i>is</i> different every time, which is why it can return different results! (Haskell Curry cackles from behind the grave.)
 
-What is this mysterious IO type that seems to be changing every time we look at it? Well, the simplest conceptual model of it is to think of it as the <i>world</i>. TODO: Yikes, that's not simple at all!
+What is this mysterious IO type that seems to be changing every time we look at it? Well, the simplest conceptual model of it is to think of it as the <i>world</i>. --TODO: Yikes, that's not simple at all!
 
 
 <b> Step 2: Take in some input. </b>
@@ -218,8 +218,8 @@ So what's the rest of the error saying?
 The way I think about these things is that they start really close to the error, and then they zoom out. 
 
 
-TODO: I never explained how to install ghc or ghci.
-TODO: I need to get a better place to host this than github... maybe?
+--TODO: I never explained how to install ghc or ghci.
+--TODO: I need to get a better place to host this than github... maybe?
 
 FOOTER:
 Footer? I barely know 'er!

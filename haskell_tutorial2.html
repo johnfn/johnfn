@@ -153,7 +153,7 @@ getHelloMessageFor :: [Char] -> [Char]
 
 </p> <p>The answer is that Haskell is very smart. It noticed that you were ++ing someName with some other strings, and logically deduced that someName must also be a string, since if you're ++ing two things together they have to be of the same type. Cool, huh?
 
-</p> <p>So the takeaway here is that Haskell is really smart, and it can figure out (it's called typer inference if we wanna get fancy) the types of just about any expression that you throw at it. If you want, you can annotate your functions with the correct type information ahead of time, like so:
+</p> <p>So the takeaway here is that Haskell is really smart, and it can figure out (it's called type inference if we wanna get fancy) the types of just about any expression that you throw at it. If you want, you can annotate your functions with the correct type information ahead of time, like so:
 
 </p> <p>(Imagine that this is in some haskell file, not in ghci.)
 <pre>
