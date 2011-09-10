@@ -81,13 +81,13 @@ main = do
 
 </p> <p>That's true. To Haskell, constants and functions are actually one and the same. Haskell is smart enough to know that if a function only returns one value, then it should be treated like a constant. 
 
-</p> <p>As for the `let`, it's a quirk of `do` syntax. TODO: Is it really?
+</p> <p>As for the `let`, for now we'll say that that's how you define functions inside of `do` blocks. In a bit, you'll see that there is a tiny difference between `do` code and non-`do` code. TODO: Is it really?
 
 </p> <p><b> ++ </b>
 
 </p> <p>This joins two lists together. Into one MEGA LIST.
 
-</p> <p>But wait, you cry! How does it work on Strings? In Haskell, Strings - like "WAZZUP" - are just lists of characters.
+</p> <p>But wait, you cry! How does it work on Strings? In Haskell, Strings - like `"WAZZUP"` - are just lists of characters.
 
 </p> <p>
 </p> <p><b> Step 1.5: A brief interlude about types. </b>
@@ -102,70 +102,6 @@ main = do
 Prelude> let x = 5
 </pre>
 
-</p> <p>Now, remember what I said about `do`, and how great it was for imperative programming and output stuff? Now, pure functional programming is great and all, but it would be really lame if ghci didn't let you do any input or output! So the smart Haskell guys figured that all of ghci should run inside a do block.
-
-</p> <p>
-</p> <p>
-</p> <p>
-</p> <p>
-</p> <p>So there's something in Haskell called the IO type. 
-
-</p> <p>
-</p> <p>
-</p> <p>
-</p> <p><b> Step 2: Take in some input. </b>
-
-</p> <p>Wouldn't it be a lot nicer if the program knew who it was greeting?
-
-</p> <p><pre>
-main = do
-  putStrLn "What's your name?"
-  str <- getLine
-  putStrLn "Hi, " ++ str
-</pre>
-
-</p> <p>Again, let's walk over the new syntax.
-
-</p> <p><b> getLine </b>
-
-</p> <p>This reads a line that the user types in.
-
-</p> <p><b> -> </b>
-
-</p> <p>This operator comes along with `do`, so you only gain access to this operator inside a function that starts with `do`. 
-
-</p> <p>
-</p> <p>
-</p> <p>
-</p> <p><b> BUT GRANT! THIS PROGRAM DOESN'T ACTUALLY WORK. DID YOU SPEND ANY TIME TESTING YOUR CODE AT ALL?!?</b>
-
-</p> <p>Oops.
-
-</p> <p><pre>
-test2.hs:3:2:
-    Couldn't match expected type `[a]' against inferred type `IO ()'
-    In the first argument of `(++)', namely `putStrLn "Hi!"'
-    In the expression: putStrLn "Hi!" ++ str
-    In the expression:
-        do { let str = "George";
-               putStrLn "Hi!" ++ str }
-</pre>
-
-</p> <p>Oh my God, that's terrifying, isn't it? Initially, Haskell error messages are really hard to understand. After some practice, though (oh, you'll get lots of practice, believe me), they'll start to become much more clear. 
-
-</p> <p>First, look at the top:
-
-</p> <p><pre>
-test2.hs:3:2:
-</pre>
-
-</p> <p>This means that the error occurred in the file `test2`, on line `3`, column `2`. 
-
-</p> <p>So what's the rest of the error saying?
-
-</p> <p>The way I think about these things is that they start really close to the error, and then they zoom out. 
-
-</p> <p>
 </p> <p></p>
 				<p> </p>
 				<p> </p>
