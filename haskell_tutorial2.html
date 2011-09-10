@@ -14,7 +14,7 @@
       <span class="small" style="float:right">by johnfn. This is <a href="http://github.com/johnfn/johnfn">a github repository</a>, generated from flat text files. It's pretty neat. And open source. Check it out! </span></h1>
     <div class="post">
       <div class="title">
-				Haskell Tutorial, pt. 0: Prelude
+				Haskell Book, pt. 1: 
 
 
       </div>
@@ -23,48 +23,149 @@
       </div>
       <div class="body">
 				
-				<p>
-</p> <p>tl;dr: This aims to be a <i>practical</i> guide to Haskell. Above all, I want you to come away from this knowing how to make super cool stuff.
+				<p>So, we're going to start off with the Fibonacci sequence...
 
-</p> <p>The problem with Haskell tutorials these days is that most of them will go over abstract code sample after abstract code sample. They'll say something like, look! 
+</p> <p>Nah, I'm just messing with you. Let's start off with a really simple program that plays the guessing game. You'll think of a number from 1-100, and the computer will try to guess it. I'll show you how I'd build this program up from scratch.
+
+</p> <p><b> Step 1: Hello, world! </b>
+
+</p> <p>Let's start out with a simple greeting. It's always nice to be greeted by your computer, right?
 
 </p> <p><pre>
-fold (+) (map (\x -> x + 1) [1, 2, 3]) 0
->> 9
+main = do
+  putStrLn "Sup?"
 </pre>
 
-</p> <p>Isn't that amazing! Didn't you always want to add 1 to each element of an array, and then sum it?!
+</p> <p>Run it! If nothing bad happened, you'll get this:
 
-</p> <p>If you're anything like me, the answer is <i>no</i>. No, I really wasn't in the mood for adding 1 to each element of an array, let alone summing it afterwards. I can't think of why I'd want to do that in the first place.
+</p> <p><pre>
+Sup?
+</pre>
 
-</p> <p>I learn by doing. I've learned the most about a language when I just sit down and make something awesome with it.
+</p> <p>That was easy. Quick overview of what just happened: 
 
-</p> <p>And for me, Haskell (and FP) tutorials are just too abstract.
+</p> <p><b> Main </b>
 
-</p> <p>It's not their fault, though. Let's see what the reason is.
+</p> <p>`main` is the function where Haskell programs start.
 
-</p> <p><b> Why are non-FP tutorials better? </b>
+</p> <p><b> do </b>
 
-</p> <p>The great thing about OOP is that it namespaces functions really well. So, if you ever want to find some string-related method, just look at the String object, and boom! There they are. Arrays? Yep, Array class. This is awesome for learning the language, because you have a place to start.
+</p> <p>`do` is special notation that I'll get into in another chapter or two, once we have a more solid understanding of Haskell. Right now, you should know two things about do:
 
-</p> <p><b> And what's wrong with FP tutorials? </b>
+</p> <p>* Only use `do` in functions that do something with IO. (This is a half truth, as you can use `do` in other places too - but you wont do that for a while.)
+* `do` makes your code seem imperative - that is, in big do expressions your function structure looks similar to Java or C++. How is this possible in a functional language, you wonder? Think about how that could be. I'll explain in a bit.
 
-</p> <p>Functional programming languages can feel like they're filled with tons of random functions. It can even feel like that's the <i>point!</i> I mean, it's in the name! FUNCTIONAL languages! What do you expect? Not-functions? That'd be some other paradigm.
+</p> <p><b> putStrLn </b>
 
-</p> <p>And so when you try to learn a functional language, people will throw this massive amount of functions at you, because that's clearly the point! Right? 
+</p> <p>Simple! Show some words on the screen.
 
-</p> <p>And since they're so decontextualized, we may as well present them in their purest, most abstract state. 
+</p> <p>Or is it not so simple? putStrLn is the first time we've <i>called a function</i>. Since we're using a <i>functional</i> language, just filled with functions, the Haskell guys decided it better be as easy as possible. And it is! No parenthesis, no commas. Just `someFunction 1 2 3 4`. Ah, beauty!
 
-</p> <p>And now we're writing examples like the first code sample that don't help people like me learn.
+</p> <p><b> Step 1.5: Take a bad guess at the user's name. </b>
 
-</p> <p>Even worse, this gives functional programming a bad rap. Because people only see examples in super abstract mathematical functions, they tend to think of those languages in those terms: obscure, mathematical, abstract. Even scary.
+</p> <p><pre>
+main = do
+  let yourName = "George"
+  putStrLn("Hi, " ++ yourName)
+</pre>
 
-</p> <p>But none of this has to be true. Haskell isn't actually scary, obscure, or abstract[1]. It's a very neat language, for practical applications as well as mathematical ones.
+</p> <p>Wouldn't it be great if your name was George? I bet I just freaked out all the Georges reading this book. Sorry, George. I didn't mean to surprise you.
 
-</p> <p>Now let's go make something cool with Haskell!
+</p> <p>What new syntax do we have?
 
-</p> <p>[1]: I can't deny that it's mathematical, but you don't have to worry about that.
+</p> <p><b> let yourName = "George" </b>
 
+</p> <p>That's a function definition!
+
+</p> <p>"That's a function definition?" you ask quizzically. "Why does it start with `let`? The only function I ever defined was `main`, and I never said `let main = blabla`. It looks a lot more like a constant."
+
+</p> <p>That's true. To Haskell, constants and functions are actually one and the same. Haskell is smart enough to know that if a function only returns one value, then it should be treated like a constant. 
+
+</p> <p>As for the `let`, it's a quirk of `do` syntax. TODO: Is it really?
+
+</p> <p><b> ++ </b>
+
+</p> <p>This joins two lists together. Into one MEGA LIST.
+
+</p> <p>But wait, you cry! How does it work on Strings? In Haskell, Strings - like "WAZZUP" - are just lists of characters.
+
+</p> <p>
+</p> <p><b> Step 1.5: A brief interlude about types. </b>
+
+</p> <p>I've skirted around this issue enough!
+
+</p> <p>&lt;Insert comic of guy hiding the IO monad from his gf. It'll be hilarious, I promise.&gt;
+
+</p> <p>One of the big deals about Haskell is its super powerful type system. You've probably heard that before, but don't know what it means. Well, let's find out! Boot up ghci and type this in.
+
+</p> <p><pre>
+Prelude> let x = 5
+</pre>
+
+</p> <p>Now, remember what I said about `do`, and how great it was for imperative programming and output stuff? Now, pure functional programming is great and all, but it would be really lame if ghci didn't let you do any input or output! So the smart Haskell guys figured that all of ghci should run inside a do block.
+
+</p> <p>
+</p> <p>
+</p> <p>
+</p> <p>
+</p> <p>So there's something in Haskell called the IO type. 
+
+</p> <p>
+</p> <p>
+</p> <p>
+</p> <p><b> Step 2: Take in some input. </b>
+
+</p> <p>Wouldn't it be a lot nicer if the program knew who it was greeting?
+
+</p> <p><pre>
+main = do
+  putStrLn "What's your name?"
+  str <- getLine
+  putStrLn "Hi, " ++ str
+</pre>
+
+</p> <p>Again, let's walk over the new syntax.
+
+</p> <p><b> getLine </b>
+
+</p> <p>This reads a line that the user types in.
+
+</p> <p><b> -> </b>
+
+</p> <p>This operator comes along with `do`, so you only gain access to this operator inside a function that starts with `do`. 
+
+</p> <p>
+</p> <p>
+</p> <p>
+</p> <p><b> BUT GRANT! THIS PROGRAM DOESN'T ACTUALLY WORK. DID YOU SPEND ANY TIME TESTING YOUR CODE AT ALL?!?</b>
+
+</p> <p>Oops.
+
+</p> <p><pre>
+test2.hs:3:2:
+    Couldn't match expected type `[a]' against inferred type `IO ()'
+    In the first argument of `(++)', namely `putStrLn "Hi!"'
+    In the expression: putStrLn "Hi!" ++ str
+    In the expression:
+        do { let str = "George";
+               putStrLn "Hi!" ++ str }
+</pre>
+
+</p> <p>Oh my God, that's terrifying, isn't it? Initially, Haskell error messages are really hard to understand. After some practice, though (oh, you'll get lots of practice, believe me), they'll start to become much more clear. 
+
+</p> <p>First, look at the top:
+
+</p> <p><pre>
+test2.hs:3:2:
+</pre>
+
+</p> <p>This means that the error occurred in the file `test2`, on line `3`, column `2`. 
+
+</p> <p>So what's the rest of the error saying?
+
+</p> <p>The way I think about these things is that they start really close to the error, and then they zoom out. 
+
+</p> <p>
 </p> <p></p>
 				<p> </p>
 				<p> </p>
@@ -80,7 +181,7 @@ fold (+) (map (\x -> x + 1) [1, 2, 3]) 0
     </div>
 
     <div class="footer">
-			What? What's a footer? This isn't a footer, is it?
+			Footer? I barely know 'er!
 
 
     </div>

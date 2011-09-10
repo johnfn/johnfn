@@ -1,5 +1,5 @@
 TITLE:
-Haskell Tutorial, pt. 1: 
+Haskell Book, pt. 1: 
 
 BODY:
 So, we're going to start off with the Fibonacci sequence...
@@ -48,7 +48,7 @@ main = do
   putStrLn("Hi, " ++ yourName)
 </pre>
 
-Wouldn't it be great if your name was George? I bet I just freaked out all the Georges reading this tutorial. Sorry, George. I didn't mean to surprise you.
+Wouldn't it be great if your name was George? I bet I just freaked out all the Georges reading this book. Sorry, George. I didn't mean to surprise you.
 
 What new syntax do we have?
 
@@ -142,11 +142,11 @@ This means that the error occurred in the file `test2`, on line `3`, column `2`.
 
 So what's the rest of the error saying?
 
-The way to think about these things is that they start really close to the error, and then they zoom out. 
+The way I think about these things is that they start really close to the error, and then they zoom out. 
 
 
 TODO: I never explained how to install ghc or ghci.
-
+TODO: I need to get a better place to host this than github... maybe?
 
 FOOTER:
 Footer? I barely know 'er!
