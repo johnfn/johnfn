@@ -69,8 +69,6 @@ def render_template(template, sections):
   
   return template
 
-# The big function
-
 def process_files(type):
   """ Creates each file of type TYPE. Returns a list of tuples of the form (created_file, title). """
   built_files = []
@@ -109,12 +107,11 @@ def process_files(type):
 
         if line == "\n" and paragraphed: sections[current_section] += "</p> <p>"
 
-
-
     sections["POSTTYPE"] = type
 
+    result = "".join([line for line in open(SKELETON)])
     result = render_template(result, sections)
-
+    
     # Result now contains the full HTML.
 
     # Remove the old one, if necessary.
