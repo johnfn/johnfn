@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+
+  <title>johnfn's blog @ GitHub</title>
+
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+  <div id="container">
+		<h1><a href="index.html" style="text-decoration:none">blog|<span class="flat">haskell_tutorial</span></a>
+      <span class="small" style="float:right">by johnfn. This is <a href="http://github.com/johnfn/johnfn">a github repository</a>, generated from flat text files. It's pretty neat. And open source. Check it out! </span></h1>
+    <div class="post">
+      <div class="title">
+				Haskell Tutorial, pt. 1: This language is useless!
+
+
+      </div>
+      <div class="date"> 
+				Wednesday, September 14 2011
+      </div>
+      <div class="body">
+				
+				<p>
+</p> <p>Haskell is a pure functional language. What that means is that if you call the same function in Haskell with the same arguments, you'll get back the same result every time. 
+
+</p> <p><pre>
+Prelude> func 5
+6
+Prelude> func 5
+6
+Prelude> func 5
+6
+</pre>
+<span class="small"> Listing 1: This language is possibly Haskell. </span>
+
+</p> <p><pre>
+Prelude> func 5
+6
+Prelude> func 5
+-1
+Prelude> func 5
+"Banana"
+Prelude> func 5
+Segmentation fault
+
+</p> <p></pre>
+<span class="small"> Listing 2: This language is definitely not Haskell. </span>
+
+</p> <p>At first when you hear this, you're like "wow this is awesome!" And it <em>is</em> pretty awesome. It forces you to follow good style. TODO: Explain more reasons why it's awesome.
+
+</p> <p>But after a while of being in pure functional bliss, a realization strikes you.
+
+</p> <p>"How on earth does Haskell make a `rand` function?" you exclaim. "How can it even tell you the current time?! That's clearly not going to be the same every time I check it."
+
+</p> <p>That's an excellent question. Let's start with the easiest one: `rand`.
+
+</p> <p>To simplify things, we'll say the way that `rand` normally works is that it has a big list of random numbers that it steps through one at a time. It'll remember where it was on the list, and give you the next number. 
+
+</p> <p>In Haskell:
+
+</p> <p><pre>
+Prelude> let rand = [5, 2, 99, 3, 6] !! 0
+Prelude> rand
+5
+Prelude> rand
+5
+</pre>
+
+</p> <p>What we just did was define rand as a function that takes the first element from a list of random numbers. But this is amazingly useless -- that function isn't random at all! Our problem is that in Haskell, functions can't "remember" anything. So we'll have to get around this somehow. Let's do this:
+
+</p> <p><pre>
+Prelude> let rand lastSpot = [5, 2, 99, 3, 6] !! lastSpot
+Prelude> rand 0
+5
+Prelude> rand 1
+2
+</pre>
+
+</p> <p>Now we're talking. We're sort of "jogging rand's memory" by reminding it every time we call it where we were last time. But that's annoying. Let's store the position we're at in a variable.
+
+</p> <p><pre>
+Prelude> let position = 0
+Prelude> let rand lastSpot = [5, 2, 99, 3, 6] !! lastSpot
+Prelude> rand position
+5
+Prelude> let position = 1
+Prelude> rand position
+2
+</pre>
+
+</p> <p>We could return the next position from `rand`, and use it the next time we called rand. If we want any old function that calls `rand` to know where to start, we'll need to take some precautions. Any function that uses rand should have a lastSpot argument, pass that argument into any function that calls rand (or calls a function that calls rand), and return the updated value. Then we're done!
+
+</p> <p>If that makes you feel a little shaky, that's good. To me, that sounds like you have to remember a <em>lot</em> of stuff just to make a simple function call. 
+
+</p> <p>
+</p> <p>
+</p> <p>
+</p> <p>
+</p> <p>
+</p> <p></p>
+				<p> </p>
+				<p> </p>
+				<p> </p>
+				<p>
+					 
+				</p>
+      </div>
+
+
+      <a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="thedayturns">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+      <iframe src="http://www.facebook.com/plugins/like.php?app_id=170533823007150&amp;href&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+    </div>
+
+    <div class="footer">
+			If you're reading this and thinking I'm crazy for starting with monads... well, you're right!
+
+
+    </div>
+  </div>
+</body>
+</html>
