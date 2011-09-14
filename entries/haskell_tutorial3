@@ -1,0 +1,85 @@
+TITLE:
+Haskell Tutorial, pt. 1: This language is useless!
+
+BODY:
+
+Haskell is a pure functional language. What that means is that if you call the same function in Haskell with the same arguments, you'll get back the same result every time. 
+
+<pre>
+Prelude> func 5
+6
+Prelude> func 5
+6
+Prelude> func 5
+6
+</pre>
+<span class="small"> Listing 1: This language is possibly Haskell. </span>
+
+<pre>
+Prelude> func 5
+6
+Prelude> func 5
+-1
+Prelude> func 5
+"Banana"
+Prelude> func 5
+Segmentation fault
+
+</pre>
+<span class="small"> Listing 2: This language is definitely not Haskell. </span>
+
+At first when you hear this, you're like "wow this is awesome!" And it <em>is</em> pretty awesome. It forces you to follow good style. TODO: Explain more reasons why it's awesome.
+
+But after a while of being in pure functional bliss, a realization strikes you.
+
+"How on earth does Haskell make a `rand` function?" you exclaim. "How can it even tell you the current time?! That's clearly not going to be the same every time I check it."
+
+That's an excellent question. Let's start with the easiest one: `rand`.
+
+To simplify things, we'll say the way that `rand` normally works is that it has a big list of random numbers that it steps through one at a time. It'll remember where it was on the list, and give you the next number. 
+
+In Haskell:
+
+<pre>
+Prelude> let rand = [5, 2, 99, 3, 6] !! 0
+Prelude> rand
+5
+Prelude> rand
+5
+</pre>
+
+What we just did was define rand as a function that takes the first element from a list of random numbers. But this is amazingly useless -- that function isn't random at all! Our problem is that in Haskell, functions can't "remember" anything. So we'll have to get around this somehow. Let's do this:
+
+<pre>
+Prelude> let rand lastSpot = [5, 2, 99, 3, 6] !! lastSpot
+Prelude> rand 0
+5
+Prelude> rand 1
+2
+</pre>
+
+Now we're talking. We're sort of "jogging rand's memory" by reminding it every time we call it where we were last time. But that's annoying. Let's store the position we're at in a variable.
+
+<pre>
+Prelude> let position = 0
+Prelude> let rand lastSpot = [5, 2, 99, 3, 6] !! lastSpot
+Prelude> rand position
+5
+Prelude> let position = 1
+Prelude> rand position
+2
+</pre>
+
+We could return the next position from `rand`, and use it the next time we called rand. If we want any old function that calls `rand` to know where to start, we'll need to take some precautions. Any function that uses rand should have a lastSpot argument, pass that argument into any function that calls rand (or calls a function that calls rand), and return the updated value. Then we're done!
+
+If that makes you feel a little shaky, that's good. To me, that sounds like you have to remember a <em>lot</em> of stuff just to make a simple function call. 
+
+
+
+
+
+
+FOOTER:
+If you're reading this and thinking I'm crazy for starting with monads... well, you're right!
+
+NOTWITTER:
