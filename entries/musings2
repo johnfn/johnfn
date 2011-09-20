@@ -1,0 +1,88 @@
+TITLE:
+The Problem with Lots of Code, pt. 2
+DATE:
+Tuesday, September 20, 2011
+BODY:
+
+In Part 1, I explored the idea how writing certain types of assertions can improve code quality. But this covers only one of a very large class of potential coding problems. Let's look at a few more in detail.
+
+1. <b> You come back to your old code after a few months and you realize it's crap. </b>
+
+<b> The answer: </b>
+
+Depending on the scope and recency, you can just rewrite it. Rewriting is often frowned upon, with good reason. The cases in which you shouldn't rewrite code are usually: 
+  a) it's too big 
+  b) you didn't write most of it, so the idea that "you can do better" is at best conjecture
+  c) the tangled mess is actually necessary (Joel Spolsky wrote about this <a href="http://www.joelonsoftware.com/articles/fog0000000069.html">here</a>)
+
+If none of these are the case, and you wrote it recently enough that it's still fresh in your mind, it's actually recommended to rewrite your code. Since you have written the code once already, you'll be aware of the overall structure of your goal, as well as the common pitfalls. 
+
+Anecdotal example: I've written the basic structure for a game many, many times. At least 20. Every time, I learn something new while doing it, and I make the code a little more tight, a little more streamlined. 
+
+So what can you do if one of those three factors does apply, so it doesn't make sense to rewrite your code?
+
+???
+
+Cry.
+
+2. <b> Too many intersecting modules. </b>
+
+Even great code suffers from this problem. If you have n modules, you have n^2 potential intersections. If you're smart, maybe you can keep 10 modules in your head. But 100? 1000?
+
+<b> The answer </b>
+
+We can actually solve this... with MATH. 
+
+If we want to minimize the number of modular intersections, why not just group all modules into one big SuperModule? Then we just have 1 intersection, right? And we're good... right?
+
+Alright, that's silly. Why? Well, clearly a module can have intersections with itself as well.
+
+Let's say that every group of 10 lines of code has an intersection. Then we do a little calculus (details abridged and/or glossed over :-) and find that if we have N lines of code total, to minimize the number of intersections, we want modules of size sqrt(N). 
+
+100 lines of code should have modules of size 10? Yeah, we call those modules 'functions'. :-P
+
+10,000 lines of code should have 100 modules of size 100? I don't know if I agree, but it might be an interesting experiment.
+
+3. <b> Too many intersecting modules. </b>
+
+<small>I'm really obsessed with this problem...</small>
+
+In an ideal world, I could write a module, and change it, and never have to worry about breaking 20 other modules that it depends on. Let's see why that's not the case, and what we can do to get there:
+
+The worst problem is when you have a module Foo, and you're scared of getting rid of instance variable bar because God knows who could be using it. The simplest solution to this is just to make all variables private. Yes, ALL. At worst you should have some sort of accessor method via getter or setter. I never really understood the point of getters and setters before, but they make a lot of sense now: they're a way to ensure that people are using your code sanely.
+
+The best solution to this problem though is to limit all external ways to change its state to a few methods, and keep everything else private. This way you can be sure that no one is reaching into the bowels of your module and doing something hairy scary that might change if you get the impulse to change its implementation. 
+
+This seems pretty nice, in theory. We can unit test the crap out of these functions too, and be a little more safe since we can guarantee that all the users of this module will only be using them.
+
+The biggest disadvantage is that if you want to change one of the core functions, you've got to change everywhere that it's called from - yikes. You could sorta alleviate this with keyword arguments, but you risk supporting all sorts of old method signatures concurrently, which is never a good idea. Maybe there should be a way to figure out which revision of a function is being called.
+
+4. <b> Someone else's code is crap </b>
+
+There are a few actual possibilities here.
+
+1. It's not actually crap. It just appears that way. Maybe it's written in a style you're not familiar with. Maybe the author uses strange or unidiomatic code (which indicates improper style, but not improper function).
+
+2. It's crap. Now we have to ask how recently it was created. 
+
+If it was created recently, we can fall back to my first point and just ask the author to rewrite it.
+
+If it wasn't created recently, you're screwed. 
+
+I don't think there's a way to fix old, massive, bad code. The only real way to stop really bad code is to prevent it. 
+
+How?
+
+Well, we can't tell people "write better code". One of my biggest guiding principles is that generalities ("Think harder! Be nicer! Do good things!") don't help people improve, because no one really believes that they are deficient. (I include myself in this generalization). Advice has to be actionable [1]. The way to improve yourself and others to use some sort of measureable heuristic ("we've code reviewed 80% of all code created this week! I've exercised every other day for the last month!"). Heuristics and measurements have their own failings, but they're a lot better than nothing.
+
+Code review is a good start. But it has to be directed code review. The problem with code review is that without proper guidance it can linger in the superficial. But the point of code review is to find code that gets more difficult to understand with time. Fixing stuff like <code>return x ? true : false</code> is fine, but it's not going to bug me any more in 6 months than it does now. On the other hand, <code>some_obj.var.some_var.var.var = 5</code> <a href="http://en.wikipedia.org/wiki/Law_of_Demeter">is a huge problem</a>. (If only all problems were that obvious.)
+
+Now, if you're paying close attention, you'd see that I just violated my own principle of how we can't improve by issuing generalities. Telling people "Do better code review!" falls into this trap. We need to have some way to improve code review.
+
+One way could be to have a program to parse programs for potential problems. There are some really obvious problems like violating the Law of Demeter like I mentioned before. Reaching into other modules' private methods could be banned, as could simpler things like magic numbers, DRY violations, etc. 
+
+
+[1]: A good word that has been bastardized by web 2.0 startups. A shame, really. Kind of like what colleges did with "passionate".
+
+FOOTER:
+Hey there. Come here often?
