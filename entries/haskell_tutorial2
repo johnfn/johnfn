@@ -182,11 +182,11 @@ Again, let's walk over the new syntax.
 
 This reads a line that the user types in.
 
-<b> -> </b>
+<b> <- </b>
 
 This operator comes along with `do`, so you only gain access to this operator inside a function that starts with `do`. 
 
-
+TODO
 
 
 <b> BUT GRANT! THIS PROGRAM DOESN'T ACTUALLY WORK. DID YOU SPEND ANY TIME TESTING YOUR CODE AT ALL?!?</b>
