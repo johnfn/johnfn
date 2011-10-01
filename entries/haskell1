@@ -8,11 +8,50 @@ Still don't fully understand the IO Monad. How come `somename <- getLine` has to
 
 >> Sorta kinda. Because we still have stuff like `mapM`, `sequence`, etc...
 
+Took a while for me to understand that you can't escape from some Monads (which is why IO String -> String doesn't exist). It makes sense right? You don't want to escape from the Random monad; you'll just start repeating the same random numbers over again... Going from IO String -> String would essentially be losing track of the world. On the other hand, escaping from Maybe is fine.
+
+I wonder if there's a different name for the inescapable Monads?
+
+Almost every Monad tutorial has problems with it. The best one I've seen so far is http://ertes.de/articles/monads.html 
+
+The only problem I saw is where it was like "lists are obviously representative of non-determinism!" Um, what?
+
+Other difficulties with monads:
+
+They seem to be about binding different operations together. But then why do they need to be inside a context?
+
+Eventually I figured it out. It's because "being inside a context" is an incredibly broad generalization. It's one of the deepest abstractions I've seen in CS - which is probably why they are reputed as so difficult to understand. A 'context' can be as broad as 'Running your program'. It can also be like 'Fail if anything fails' (Maybe). It can be like "Generate reasonable random numbers." It can be "resume on error." I still think I would have difficulty pointing out a Monad in the distance though.
+
+Monads are actually really cool because they aren't special. The only real special part about them is the do notation. 
+
+Why does >>= need to have that funky type syntax?
+
+That is, m a -> (a -> m b) -> m b. 
+
+>> This threw me for a while. >>= is just sequencing statements. It threw me (still does, kinda) that the second argument is (a -> m b). Could we equivalently define monads with (say):
+
+>> *-*MYBIND*-* (yep, that's gonna be the infix syntax for sure) m a -> (a -> b) -> m b?
+
+>> Well, that's just fmap. The answer is yes, but apparently we need a new function to complete the definition: join :: m (m a) -> m a
+
+>> I don't know why this is. Should look into it more. 
+
+The recursive problem - I keep rewriting imperative loops that have lots of state into recursive loops that (essentially) have a lot of state. I know this isn't the Haskell way, but it's tough to see what is sometimes.
+
+Would be really nice to see imperative to functional.
+
+foldr, map, filter...
+
+
+
 On the other hand, really liking the strict typing, although it takes a while to get stuff right.
 
 Apparent inconsistency: How come if a key in a map is (Int, Int) the type of the map is `Map (Int, Int) Int` without a comma after the `)`?
 
 Confusion: Why do we have all these crazy operators like <*>? Seems like a lot of cavorting just to do stuff inside of an applicative functor, esp. since you can just extract it out and use normal operators. I understand Haskell is uber strongly typed, but isn't there a better solution to this than "throw more operators at it"? On the other hand, I haven't really seen <*> in practice (not that I've hunted around much), so maybe it's just academic. I dunno.
+
+>> I'm pretty sure it's because Haskell people like to show off how they can overload every operator, ever. &&& ftw!
+
 
 FOOTER:
 C'est ne pas une footer.
