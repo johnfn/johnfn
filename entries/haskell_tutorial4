@@ -1,0 +1,79 @@
+TITLE:
+Haskell Book, pt. 1: 
+
+BODY:
+
+*This chapter is optional. If you're not interested in all the details of Haskell's syntax, skim over it, and check back when you see something you don't understand.*
+
+Lists!
+
+myList = [1,2,3,4]
+
+Lists are groups of values in order. Key facts about lists:
+
+* Every item in a list must be the same. ["a", "a"] is fine. [1, 2] is fine. [1, "A"] is bad times.
+
+
+Lists are core to Haskell, so you get a lot of functions that operate on lists for free.
+
+* [1,2] ++ [3,4] == [1,2,3,4] -- combine lists
+* 1:[2,3,4] == [1,2,3,4] -- add element onto list (known as cons in some languages)
+
+* [1,2,3,4] !! 1 == 2 -- get element at a position
+
+* head [1,2,3,4] == 1 -- get first item of list
+* tail [1,2,3,4] == [2,3,4]  -- get all but head
+* last [1,2,3,4] == 4  -- final item of list
+* init [1,2,3,4] == [1,2,3]  -- get all but last
+
+* null [1,2,3,4] == False
+* null [] == True -- is given list empty?
+
+* length [1,2,3,4] == 4 -- number of elements in the list.
+
+There are many more! Check them out at http://haskell.org/ghc/docs/latest/html/libraries/base/Data-List.html. Since I feel the rest are not as obvious as the above, I'll be explaining the rest as they appear in practice.
+
+Tuples!
+
+Tuples are lists with
+
+* Fixed size
+* Different types ("a", 1) is a valid tuple. (If you wanted to sound smart, you can say that lists are <em>homogenous</em> and tuples are <em>heterogenous</em>.[1])
+
+* fst (1,2) == 1
+* snd (1,2) == 2
+
+Functions!
+
+Behold! 
+
+add x y = x + y
+
+This declares the function `add`, which takes two arguments, `x` and `y`, and returns their sum.
+
+You can augment function definitions with lots of fun things. Haskell stresses *lots of simple functions* over big hairy scary messes, and gives you lots of ways to do this.
+
+The simplest way is called pattern matching, which is a way to check for argument values ahead of time.
+
+-- Remember null from the list functions? Go look up a bit if you forgot.
+null [] = True
+null _ = False
+
+When you call null, Haskell steps through the available functions from top to bottom. If you called with [], it matches that pattern and returns True immediately. 
+
+If you didn't, it hits the _ case. "_" means "match anything", so if the list isnt [] our null will return False.
+
+Destructuring lets you pull apart more complicated data structures.
+
+length [] = 0
+length x:xs = 1 + length xs
+
+
+
+[1]: Richard Feynman once said something along the lines of how there's no purpose to use complicated vocabulary when simple vocab will do. I agree.
+
+
+FOOTER:
+Footer? I barely know 'er!
+
+NOTWITTER:
