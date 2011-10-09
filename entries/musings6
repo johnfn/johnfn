@@ -1,0 +1,20 @@
+TITLE:
+Coding Princples
+DATE:
+Sunday, 9 October 2011
+BODY:
+
+Well, if I wrote musings5, I may as well write this one too.
+
+0. When given two choices, choose the one that scales better. This is the core axiom from which all other principles can be derived from. 
+
+Example: When choosing between putting a check in a setter method of a class to see if the new value is the right type, or putting the check every time you set the variable, the correct choice is clearly the former, which scales at O(1) to adding new calls to set, where the second one scales at O(n).
+
+1. Don't repeat yourself. This one has lots of rammifications. Don't copy and paste code, obviously. But also, don't copy logic, which is a more subtle thing.
+
+2. Choose explicit over implicit.
+
+3. Don't make me remember things.
+
+FOOTER:
+What's up?

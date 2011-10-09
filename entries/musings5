@@ -1,0 +1,23 @@
+TITLE:
+Don't Make me Remember
+DATE:
+Sunday, 9 October 2011
+BODY:
+
+One of my biggest guiding principles while coding is this:
+
+I hate remembering things.
+
+What that means is that I try to design programs such that I have to remember as little as possible.
+
+Example: Say that you have doSomethingFunction(). You write it, but then you put in the comments: "Don't forget to call cleanupSomethingFunction() when you're done." That seems like enough, right? I mean, you commented it. What more could I want?
+
+No, no, no. This is really bad. See, it's okay right now, and I might even remember it the first and second times that I use doSomethingFunction(), but what if somewhere else I'm editing the code and accidentally remove the cleanup() call, or I use that code as reference to implement some more code and forget the cleanup(), or...
+
+The point is that every line that I write that I will need to remember something about later increases the chance of disaster.
+
+(The right way to solve this problem, by the way, is to pass a function into doSomethingFunction() that does everything that happens in the intermediary before you call cleanupFunction.)
+
+
+FOOTER:
+What's up?
