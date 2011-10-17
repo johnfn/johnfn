@@ -1,0 +1,196 @@
+# Style guide
+
+I had big problems with style in the 106s.  "What is this thing called style?!" I cried. "I came into CS because I liked how I could be sure I was absolutely right about something, and now you're telling me that I don't even had that?"
+
+But I believe you can be absolutely right about style.
+
+## What is style?
+
+Good style means: Your code is easy to understand, and it's easy to modify. 
+
+That's it! If you're not sure if something is stylistic, just ask yourself if it makes the code easier to understand and modify. If it is, it's more stylish :)
+
+## Stylistic problems
+
+### Indentation
+when you open a bracket, start indenting everything on the line *after* the bracket. When you close a bracket, start unindenting everything on the line *of* the bracket. 
+
+Good indentation:
+
+    private void moveAndAddBeepers() {
+      while (frontIsClear()) {
+        move();
+        if (beeperPresent()) {
+          putBeeper();
+        }
+      }
+    }
+
+Bad indentation (and naming!):
+
+    private void argh(){while(frontIsClear()){if(noBeeperPresent()){dropBeeper();}}}
+
+Please never do this. This is like, worse than the 7 deadly sins. All at the same time. BY FAR.
+
+### Indentation
+Don't mix tabs and spaces - just use one or the other. If you do, something like this might happen to you: ![tabs and spaces](http://www.emacswiki.org/pics/static/TabsSpacesBoth.png)
+
+### Naming
+There are a few important things here.
+
+* The name should describe what the function does. 
+
+* Be sure that the name tells the truth. This can be subtle.
+
+        private void lineBeepersToWall() {
+          while (frontIsClear()) {
+            putBeeper();
+          }
+        }
+
+    It doesn't line the beepers to the wall! It lines the beepers up to one before the wall. You should add a final `putBeeper()` call at the end of the function.
+
+* Be sure the name isn't too long - 4 words is usually a maximum.
+
+### Decomposition
+Break functions into smaller parts. It's hard to put a hard and fast rule on how long is too long for a function (since how do you measure when a function stops becoming "easy to understand/modify"?). If it's bigger than your screen is high, it's definitely too long.
+
+### Decomposition
+If you see it twice, decompose it into a function. The idea is that if I want to modify that logic later, I only have to modify one thing.
+
+### Commenting
+The most important rule of commenting is: explain what the code does *on a level higher than code*. If the idea is complex, also explain *why*.
+
+Reading code is hard, but reading comments is (should be) easy.
+
+This commenting isn't great, because it just doesn't help me understand what the code does, or why.
+
+    /* Karel moves up, then left while he isn't blocked. */
+    private void karelMoveFunction(){
+      move();
+      turnLeft();
+      while (frontIsClear()){
+        move();
+      }
+    }
+
+A better comment might be:
+
+    /* This function moves Karel up, then left until he finds a wall. This
+     * is one of the core functions to help Karel escape a maze, since the
+     * maze consists of a lot of long passageways that go to the left. */
+
+Throughout this guide, I've tried to make my comments awesome quality (except when I'm calling attention to them as bad comments, like I was above :-)
+
+## More Abstract
+
+The 106s don't stress these as much since they are more abstract than the previous examples. I'll leave them here in case you want some food for thought.
+
+### Don't Repeat Yourself
+
+Repetition makes code *hard to modify.* That's because if I want to change what you've repeated, I have to change it in many different places.
+
+#### Sometimes repetition is easy to see.
+
+    move();
+    move();
+    move();
+    move();
+
+That should be replaced with 
+
+    for (int i=0; i < 4; i++) {
+        move();
+    } 
+
+The rationale is this: If someone later wants Karel to move 5, or 10, or 100 times, it's an easy fix. (Remember: easy to modify). And if they want Karel to check if frontIsClear() each time he moves, that's an easy fix too.
+
+#### Sometimes repetition is not super obvious:
+
+    GRect rect1 = new GRect(0, 0, 50, 50);
+    rect1.setFilled(true);
+    add(rect1);
+
+    GRect rect2 = new GRect(50, 50, 50, 50);
+    rect2.setFilled(false);
+    add(rect2);
+
+    GRect rect3 = new GRect(100, 100, 50, 50);
+    rect3.setFilled(true);
+    add(rect3);
+
+But when you start seeing code that visually looks the same as other code, there's always a better way. Here's one:
+
+    /* This function makes a square at the provided x and y coordinates,
+     * and fills it if the filled boolean is true. This function is used
+     * to make a diagonal row of squares in the top left. */
+    private void makeSquare(int x, int y, bool filled) {
+GRect square = new GRect(100, 100, 50, 50);
+      square.setFilled(true);
+      add(square);
+    }
+
+Now we can replace the main code with:
+
+    makeSquare(0, 0, true);
+    makeSquare(50, 50, false);
+    makeSquare(100, 100, true);
+
+
+### Don't Make me Remember Anything
+Everything I have to remember makes the code just slightly harder to modify.
+
+Imagine this code:
+
+    /* leaveBeeperAhead drops a beeper one square ahead of Karel, but keeps
+     * Karel in the same spot and facing the same direction. */
+    private void leaveBeeperAhead(){
+      move();
+      putBeeper();
+      turnAround();
+      move();
+      turnAround();
+    }
+
+What's there to remember about this simple function? Well, the big problem is that `leaveBeeperAhead()` requires you to remember to check `if (frontIsClear())` before you call it. If you don't, you get an epic Karel crash! This makes code harder to modify because if I want to add some other beepers by using your function and I don't know to check for a wall, disasters may happen.
+
+Here's a slight improvement:
+
+    /* leaveBeeperAhead drops a beeper one square ahead of Karel, but keeps
+     * Karel in the same spot and facing the same direction.
+     * Precondition: leaveBeeperAhead must only be called when front is clear.
+     */
+   (rest of the function is the same...)
+
+Now that we've added a precondition, we should be fine, right?
+
+Now imagine your boss coming in: "We have to fix the Karel BeeperDropper app! By midnight! I've gotten thousands of calls from upset clients because Karel isn't dropping as many beepers as they expect!" Now I have to fix code, but if the BeeperDropper app is thousands of lines long, I might not have enough time to read all the comments. The right way to fix the problem is to ensure it never happens.
+
+    //comments same as first time
+    private void tryLeaveBeeperAhead() {
+      if (frontIsClear()) {
+        move();
+        putBeeper();
+        turnAround();
+        move();
+        turnAround();
+      }
+    }
+
+Notice we changed the function name to indicate the change in functionality.
+
+*Fun fact:* 106A set you up to fail here. `move()` requires you to *remember* to put `if (frontIsClear())` around it - or else it might crash! You should go tell Mehran he has bad style. Just don't tell him I said it...
+
+## What is style, really?
+
+Warning: This section is a bit theoretical. Feel free to skip it.
+
+The two aspects of code that make it special are:
+
+1. It's easier to write code than read it.
+
+2. Code is never finished.
+
+The 106s don't really reflect true real world code, especially with regards to #2 - since in class we finish our code in a week or two and move on. That makes the purpose of style  a little opaque. Style comes truly into play when you're editing code that's been around for months or years (remember, you never finish!), code that you didn't even write. Then suddenly good style makes a *huge* difference. Edits that might take a few minutes in a good code base suddenly take hours, or days, or weeks. (Really, weeks! You have to check through every dependency to make sure you aren't breaking something, and you have to make sure you didn't break anything that was working before, and so much more. And since code is so hard to read, this can really take a long time.)
+
+So if you feel like the purpose of style is obscure - this is a good reason why. If you're feeling like style is pointless - well, you're kinda right. You haven't seen the huge gains that it it gives you, and you won't until you move into classes with larger projects (like cs108). But we have to instill proper style in you before you fully understand it because, if we didn't, bigger projects would be a disaster until you worked it out.

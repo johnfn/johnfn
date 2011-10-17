@@ -12,8 +12,9 @@
 
 <h2 id="stylisticproblems">Stylistic problems</h2>
 
-<ul>
-<li><p><strong>Indentation</strong> - when you open a bracket, start indenting everything on the line <em>after</em> the bracket. When you close a bracket, start unindenting everything on the line <em>of</em> the bracket. </p>
+<h3 id="indentation">Indentation</h3>
+
+<p>when you open a bracket, start indenting everything on the line <em>after</em> the bracket. When you close a bracket, start unindenting everything on the line <em>of</em> the bracket. </p>
 
 <p>Good indentation:</p>
 
@@ -32,11 +33,18 @@
 <pre><code>private void argh(){while(frontIsClear()){if(noBeeperPresent()){dropBeeper();}}}
 </code></pre>
 
-<p>Please never do this. This is like, worse than the 7 deadly sins. All at the same time. BY FAR.</p></li>
-<li><p><strong>Indentation</strong> - Don't mix tabs and spaces - just use one or the other. If you do, something like this might happen to you: http://www.emacswiki.org/pics/static/TabsSpacesBoth.png</p></li>
-<li><p><strong>Naming</strong> - There are a few important things here.</p>
+<p>Please never do this. This is like, worse than the 7 deadly sins. All at the same time. BY FAR.</p>
 
-<ul><li><p>The name should describe what the function does. </p></li>
+<h3 id="indentation">Indentation</h3>
+
+<p>Don't mix tabs and spaces - just use one or the other. If you do, something like this might happen to you: <img src="http://www.emacswiki.org/pics/static/TabsSpacesBoth.png" alt="tabs and spaces" title="" /></p>
+
+<h3 id="naming">Naming</h3>
+
+<p>There are a few important things here.</p>
+
+<ul>
+<li><p>The name should describe what the function does. </p></li>
 <li><p>Be sure that the name tells the truth. This can be subtle.</p>
 
 <pre><code>private void lineBeepersToWall() {
@@ -47,9 +55,20 @@
 </code></pre>
 
 <p>It doesn't line the beepers to the wall! It lines the beepers up to one before the wall. You should add a final <code>putBeeper()</code> call at the end of the function.</p></li>
-<li><p>Be sure the name isn't too long - 4 words is usually a maximum.</p></li></ul></li>
-<li><p><strong>Decomposition</strong> - Break functions into smaller parts. It's hard to put a hard and fast rule on how long is too long for a function (since how do you measure when a function stops becoming "easy to understand/modify"?). If it's bigger than your screen is high, it's definitely too long.</p></li>
-<li><p><strong>Commenting</strong> - The most important rule of commenting is: explain what the code does <em>on a level higher than code</em>. If the idea is complex, also explain <em>why</em>.</p>
+<li><p>Be sure the name isn't too long - 4 words is usually a maximum.</p></li>
+</ul>
+
+<h3 id="decomposition">Decomposition</h3>
+
+<p>Break functions into smaller parts. It's hard to put a hard and fast rule on how long is too long for a function (since how do you measure when a function stops becoming "easy to understand/modify"?). If it's bigger than your screen is high, it's definitely too long.</p>
+
+<h3 id="decomposition">Decomposition</h3>
+
+<p>If you see it twice, decompose it into a function. The idea is that if I want to modify that logic later, I only have to modify one thing.</p>
+
+<h3 id="commenting">Commenting</h3>
+
+<p>The most important rule of commenting is: explain what the code does <em>on a level higher than code</em>. If the idea is complex, also explain <em>why</em>.</p>
 
 <p>Reading code is hard, but reading comments is (should be) easy.</p>
 
@@ -72,12 +91,17 @@ private void karelMoveFunction(){
  * maze consists of a lot of long passageways that go to the left. */
 </code></pre>
 
-<p>Throughout this guide, I've tried to make my comments awesome quality (except when I'm calling attention to them as bad comments, like I was above :-)</p></li>
-<li><p><strong>Don't Repeat Yourself</strong></p>
+<p>Throughout this guide, I've tried to make my comments awesome quality (except when I'm calling attention to them as bad comments, like I was above :-)</p>
+
+<h2 id="moreabstract">More Abstract</h2>
+
+<p>The 106s don't stress these as much since they are more abstract than the previous examples. I'll leave them here in case you want some food for thought.</p>
+
+<h3 id="dontrepeatyourself">Don't Repeat Yourself</h3>
 
 <p>Repetition makes code <em>hard to modify.</em> That's because if I want to change what you've repeated, I have to change it in many different places.</p>
 
-<p><em>Sometimes repetition is easy to see.</em></p>
+<h4 id="sometimesrepetitioniseasytosee">Sometimes repetition is easy to see.</h4>
 
 <pre><code>move();
 move();
@@ -94,17 +118,15 @@ move();
 
 <p>The rationale is this: If someone later wants Karel to move 5, or 10, or 100 times, it's an easy fix. (Remember: easy to modify). And if they want Karel to check if frontIsClear() each time he moves, that's an easy fix too.</p>
 
-<p><em>Sometimes repetition is not super obvious:</em></p>
+<h4 id="sometimesrepetitionisnotsuperobvious">Sometimes repetition is not super obvious:</h4>
 
 <pre><code>GRect rect1 = new GRect(0, 0, 50, 50);
 rect1.setFilled(true);
 add(rect1);
 
-
 GRect rect2 = new GRect(50, 50, 50, 50);
 rect2.setFilled(false);
 add(rect2);
-
 
 GRect rect3 = new GRect(100, 100, 50, 50);
 rect3.setFilled(true);
@@ -117,19 +139,23 @@ add(rect3);
  * and fills it if the filled boolean is true. This function is used
  * to make a diagonal row of squares in the top left. */
 private void makeSquare(int x, int y, bool filled) {
-GRect square = new GRect(100, 100, 50, 50);
-    square.setFilled(true);
-    add(square);
-}
 </code></pre>
+
+<p>GRect square = new GRect(100, 100, 50, 50);
+      square.setFilled(true);
+      add(square);
+    }</p>
 
 <p>Now we can replace the main code with:</p>
 
 <pre><code>makeSquare(0, 0, true);
 makeSquare(50, 50, false);
 makeSquare(100, 100, true);
-</code></pre></li>
-<li><p><strong>Don't Make me Remember Anything</strong> - Everything I have to remember makes the code just slightly harder to modify.</p>
+</code></pre>
+
+<h3 id="dontmakemerememberanything">Don't Make me Remember Anything</h3>
+
+<p>Everything I have to remember makes the code just slightly harder to modify.</p>
 
 <p>Imagine this code:</p>
 
@@ -174,5 +200,19 @@ private void tryLeaveBeeperAhead() {
 
 <p>Notice we changed the function name to indicate the change in functionality.</p>
 
-<p><em>Fun fact:</em> 106A set you up to fail here. <code>move()</code> requires you to <em>remember</em> to put <code>if (frontIsClear())</code> around it - or else it might crash! You should go tell Mehran he has bad style. Just don't tell him I said it...</p></li>
-</ul></body>
+<p><em>Fun fact:</em> 106A set you up to fail here. <code>move()</code> requires you to <em>remember</em> to put <code>if (frontIsClear())</code> around it - or else it might crash! You should go tell Mehran he has bad style. Just don't tell him I said it...</p>
+
+<h2 id="whatisstylereally">What is style, really?</h2>
+
+<p>Warning: This section is a bit theoretical. Feel free to skip it.</p>
+
+<p>The two aspects of code that make it special are:</p>
+
+<ol>
+<li><p>It's easier to write code than read it.</p></li>
+<li><p>Code is never finished.</p></li>
+</ol>
+
+<p>The 106s don't really reflect true real world code, especially with regards to #2 - since in class we finish our code in a week or two and move on. That makes the purpose of style  a little opaque. Style comes truly into play when you're editing code that's been around for months or years (remember, you never finish!), code that you didn't even write. Then suddenly good style makes a <em>huge</em> difference. Edits that might take a few minutes in a good code base suddenly take hours, or days, or weeks. (Really, weeks! You have to check through every dependency to make sure you aren't breaking something, and you have to make sure you didn't break anything that was working before, and so much more. And since code is so hard to read, this can really take a long time.)</p>
+
+<p>So if you feel like the purpose of style is obscure - this is a good reason why. If you're feeling like style is pointless - well, you're kinda right. You haven't seen the huge gains that it it gives you, and you won't until you move into classes with larger projects (like cs108). But we have to instill proper style in you before you fully understand it because, if we didn't, bigger projects would be a disaster until you worked it out.</p></body>
