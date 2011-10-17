@@ -1,0 +1,178 @@
+<!DOCTYPE HTML><html><head>  <meta charset='utf-8'>  <title>johnfn's blog @ GitHub</title>  <link rel='stylesheet' type='text/css' href='fancy.css' /></head><body>  <h1 id="styleguide">Style guide</h1>
+
+<p>I had big problems with style in the 106s.  "What is this thing called style?!" I cried. "I came into CS because I liked how I could be sure I was absolutely right about something, and now you're telling me that I don't even had that?"</p>
+
+<p>But I believe you can be absolutely right about style.</p>
+
+<h2 id="whatisstyle">What is style?</h2>
+
+<p>Good style means: Your code is easy to understand, and it's easy to modify. </p>
+
+<p>That's it! If you're not sure if something is stylistic, just ask yourself if it makes the code easier to understand and modify. If it is, it's more stylish :)</p>
+
+<h2 id="stylisticproblems">Stylistic problems</h2>
+
+<ul>
+<li><p><strong>Indentation</strong> - when you open a bracket, start indenting everything on the line <em>after</em> the bracket. When you close a bracket, start unindenting everything on the line <em>of</em> the bracket. </p>
+
+<p>Good indentation:</p>
+
+<pre><code>private void moveAndAddBeepers() {
+  while (frontIsClear()) {
+    move();
+    if (beeperPresent()) {
+      putBeeper();
+    }
+  }
+}
+</code></pre>
+
+<p>Bad indentation (and naming!):</p>
+
+<pre><code>private void argh(){while(frontIsClear()){if(noBeeperPresent()){dropBeeper();}}}
+</code></pre>
+
+<p>Please never do this. This is like, worse than the 7 deadly sins. All at the same time. BY FAR.</p></li>
+<li><p><strong>Indentation</strong> - Don't mix tabs and spaces - just use one or the other. If you do, something like this might happen to you: http://www.emacswiki.org/pics/static/TabsSpacesBoth.png</p></li>
+<li><p><strong>Naming</strong> - There are a few important things here.</p>
+
+<ul><li><p>The name should describe what the function does. </p></li>
+<li><p>Be sure that the name tells the truth. This can be subtle.</p>
+
+<pre><code>private void lineBeepersToWall() {
+  while (frontIsClear()) {
+    putBeeper();
+  }
+}
+</code></pre>
+
+<p>It doesn't line the beepers to the wall! It lines the beepers up to one before the wall. You should add a final <code>putBeeper()</code> call at the end of the function.</p></li>
+<li><p>Be sure the name isn't too long - 4 words is usually a maximum.</p></li></ul></li>
+<li><p><strong>Decomposition</strong> - Break functions into smaller parts. It's hard to put a hard and fast rule on how long is too long for a function (since how do you measure when a function stops becoming "easy to understand/modify"?). If it's bigger than your screen is high, it's definitely too long.</p></li>
+<li><p><strong>Commenting</strong> - The most important rule of commenting is: explain what the code does <em>on a level higher than code</em>. If the idea is complex, also explain <em>why</em>.</p>
+
+<p>Reading code is hard, but reading comments is (should be) easy.</p>
+
+<p>This commenting isn't great, because it just doesn't help me understand what the code does, or why.</p>
+
+<pre><code>/* Karel moves up, then left while he isn't blocked. */
+private void karelMoveFunction(){
+  move();
+  turnLeft();
+  while (frontIsClear()){
+    move();
+  }
+}
+</code></pre>
+
+<p>A better comment might be:</p>
+
+<pre><code>/* This function moves Karel up, then left until he finds a wall. This
+ * is one of the core functions to help Karel escape a maze, since the
+ * maze consists of a lot of long passageways that go to the left. */
+</code></pre>
+
+<p>Throughout this guide, I've tried to make my comments awesome quality (except when I'm calling attention to them as bad comments, like I was above :-)</p></li>
+<li><p><strong>Don't Repeat Yourself</strong></p>
+
+<p>Repetition makes code <em>hard to modify.</em> That's because if I want to change what you've repeated, I have to change it in many different places.</p>
+
+<p><em>Sometimes repetition is easy to see.</em></p>
+
+<pre><code>move();
+move();
+move();
+move();
+</code></pre>
+
+<p>That should be replaced with </p>
+
+<pre><code>for (int i=0; i &lt; 4; i++) {
+    move();
+} 
+</code></pre>
+
+<p>The rationale is this: If someone later wants Karel to move 5, or 10, or 100 times, it's an easy fix. (Remember: easy to modify). And if they want Karel to check if frontIsClear() each time he moves, that's an easy fix too.</p>
+
+<p><em>Sometimes repetition is not super obvious:</em></p>
+
+<pre><code>GRect rect1 = new GRect(0, 0, 50, 50);
+rect1.setFilled(true);
+add(rect1);
+
+
+GRect rect2 = new GRect(50, 50, 50, 50);
+rect2.setFilled(false);
+add(rect2);
+
+
+GRect rect3 = new GRect(100, 100, 50, 50);
+rect3.setFilled(true);
+add(rect3);
+</code></pre>
+
+<p>But when you start seeing code that visually looks the same as other code, there's always a better way. Here's one:</p>
+
+<pre><code>/* This function makes a square at the provided x and y coordinates,
+ * and fills it if the filled boolean is true. This function is used
+ * to make a diagonal row of squares in the top left. */
+private void makeSquare(int x, int y, bool filled) {
+GRect square = new GRect(100, 100, 50, 50);
+    square.setFilled(true);
+    add(square);
+}
+</code></pre>
+
+<p>Now we can replace the main code with:</p>
+
+<pre><code>makeSquare(0, 0, true);
+makeSquare(50, 50, false);
+makeSquare(100, 100, true);
+</code></pre></li>
+<li><p><strong>Don't Make me Remember Anything</strong> - Everything I have to remember makes the code just slightly harder to modify.</p>
+
+<p>Imagine this code:</p>
+
+<pre><code>/* leaveBeeperAhead drops a beeper one square ahead of Karel, but keeps
+ * Karel in the same spot and facing the same direction. */
+private void leaveBeeperAhead(){
+  move();
+  putBeeper();
+  turnAround();
+  move();
+  turnAround();
+}
+</code></pre>
+
+<p>What's there to remember about this simple function? Well, the big problem is that <code>leaveBeeperAhead()</code> requires you to remember to check <code>if (frontIsClear())</code> before you call it. If you don't, you get an epic Karel crash! This makes code harder to modify because if I want to add some other beepers by using your function and I don't know to check for a wall, disasters may happen.</p>
+
+<p>Here's a slight improvement:</p>
+
+<pre><code>/* leaveBeeperAhead drops a beeper one square ahead of Karel, but keeps
+ * Karel in the same spot and facing the same direction.
+ * Precondition: leaveBeeperAhead must only be called when front is clear.
+ */
+</code></pre>
+
+<p>(rest of the function is the same...)</p>
+
+<p>Now that we've added a precondition, we should be fine, right?</p>
+
+<p>Now imagine your boss coming in: "We have to fix the Karel BeeperDropper app! By midnight! I've gotten thousands of calls from upset clients because Karel isn't dropping as many beepers as they expect!" Now I have to fix code, but if the BeeperDropper app is thousands of lines long, I might not have enough time to read all the comments. The right way to fix the problem is to ensure it never happens.</p>
+
+<pre><code>//comments same as first time
+private void tryLeaveBeeperAhead() {
+  if (frontIsClear()) {
+    move();
+    putBeeper();
+    turnAround();
+    move();
+    turnAround();
+  }
+}
+</code></pre>
+
+<p>Notice we changed the function name to indicate the change in functionality.</p>
+
+<p><em>Fun fact:</em> 106A set you up to fail here. <code>move()</code> requires you to <em>remember</em> to put <code>if (frontIsClear())</code> around it - or else it might crash! You should go tell Mehran he has bad style. Just don't tell him I said it...</p></li>
+</ul></body>
