@@ -3,7 +3,7 @@ a {
 }
 
 a:link {
-  color: #940;
+  color: #941;
 }
 
 a:hover {
@@ -32,7 +32,6 @@ textarea {
   float: right;
   width: 40%;
   height: 400px;
-  margin-left: auto;
   margin-right: auto;
   font-family: "Arial";
 }
@@ -56,19 +55,41 @@ textarea {
 .blog-title {
 }
 
-ol {
-  margin-left: 60px;
-  list-style-type: none;
-}
-
 img {
   margin-top: 10px;
 }
 
 li {
   margin-left: 10px;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
+}
+
+#sidebar {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 200px;
+  height: 100%;
+  color: gray;
+}
+
+.sidebar-content {
+  line-height: 150%;
+}
+
+#sidebar-header {
+  font-size: 1.5em;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.sidebar-indent {
+  margin-left: 10px;
+}
+
+
+#everything-else {
+  width: auto;
+  margin-right: 200px;
 }
 
 body {

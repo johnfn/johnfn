@@ -6,7 +6,7 @@ But I believe you can be absolutely right about style.
 
 ## What is style?
 
-Good style means: Your code is easy to understand, and it's easy to modify. 
+Good style means: Your code is *easy to understand*, and it's *easy to modify.*
 
 That's it! If you're not sure if something is stylistic, just ask yourself if it makes the code easier to understand and modify. If it is, it's more stylish :)
 
@@ -32,7 +32,7 @@ Bad indentation (and naming!):
 
 Please never do this. This is like, worse than the 7 deadly sins. All at the same time. BY FAR.
 
-### Indentation
+#### A minor issue
 Don't mix tabs and spaces - just use one or the other. If you do, something like this might happen to you: ![tabs and spaces](http://www.emacswiki.org/pics/static/TabsSpacesBoth.png)
 
 ### Naming
@@ -88,7 +88,11 @@ The 106s don't stress these as much since they are more abstract than the previo
 
 ### Don't Repeat Yourself
 
-Repetition makes code *hard to modify.* That's because if I want to change what you've repeated, I have to change it in many different places.
+### Don't Repeat Yourself
+
+### Don't Repeat Yourself
+
+Repetition makes code *hard to modify.* That's because if I want to change what you've repeated, I have to change it in many different places. Imagine how annoying it would be if I wanted to rename this section to Redundancy or something.
 
 #### Sometimes repetition is easy to see.
 
@@ -125,7 +129,7 @@ But when you start seeing code that visually looks the same as other code, there
      * and fills it if the filled boolean is true. This function is used
      * to make a diagonal row of squares in the top left. */
     private void makeSquare(int x, int y, bool filled) {
-GRect square = new GRect(100, 100, 50, 50);
+      GRect square = new GRect(100, 100, 50, 50);
       square.setFilled(true);
       add(square);
     }

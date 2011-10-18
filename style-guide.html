@@ -1,4 +1,60 @@
-<!DOCTYPE HTML><html><head>  <meta charset='utf-8'>  <title>johnfn's blog @ GitHub</title>  <link rel='stylesheet' type='text/css' href='fancy.css' /></head><body>  <h1 id="styleguide">Style guide</h1>
+<!DOCTYPE html><html><head><meta charset="utf-8" /><title>Style Guide</title><link rel="stylesheet" type="text/css" href="fancy.css" /><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script></head><script>var __slice = Array.prototype.slice;var __hasProp = Object.prototype.hasOwnProperty;var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };var __extends = function(child, parent) {  for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }  function ctor() { this.constructor = child; }  ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype;  return child; };var __indexOf = Array.prototype.indexOf || function(item) {  for (var i = 0, l = this.length; i < l; i++) {    if (this[i] === item) return i;  } return -1; };(function () {
+    var elem_valid;
+    elem_valid = function(elem) {
+      return !(elem.tagName === 'H4' || elem.tagName === 'H1');
+    };
+    return $(document).ready(function() {
+      var id, last_best;
+      id = 0;
+      $(":header").each(function() {
+        var elem, new_link;
+        if (!elem_valid(this)) {
+          return;
+        }
+        id += 1;
+        elem = $(this);
+        elem.attr("id", "" + id);
+        new_link = $("<div class='nav-items' id='nav-item-" + id + "'><a href='javascript:void(0)' class='sidebar-content " + (this.tagName === 'H3' ? "sidebar-indent" : void 0) + "'>" + this.innerHTML + "</a></div>");
+        $("#sidebar").append(new_link);
+        return new_link.click(function() {
+          return $('html, body').animate({
+            scrollTop: elem.offset().top
+          }, 1000);
+        });
+      });
+      last_best = void 0;
+      return $(window).scroll(function() {
+        var best, best_header;
+        best = 999999999;
+        best_header = void 0;
+        $(":header").each(function() {
+          var dist;
+          if (!elem_valid(this)) {
+            return;
+          }
+          dist = $(window).scrollTop() - $(this).offset().top;
+          if (dist >= 0 && dist < best) {
+            best = dist;
+            return best_header = $(this);
+          }
+        });
+        if (best_header && ((!last_best) || (best_header[0].innerHTML !== last_best[0].innerHTML))) {
+          last_best = best_header;
+          id = best_header.attr('id');
+          $("#nav-item-" + id).animate({
+            backgroundColor: '#eee'
+          }, 'slow');
+        }
+        return $(".nav-items").each(function() {
+          if (this.id === "nav-item-" + best_header.attr('id')) {
+            return;
+          }
+          $(this).stop();
+          return $(this).css('backgroundColor', '#fff');
+        });
+      });
+    });
+  }).call(this);</script><body><div id="sidebar"><div id="sidebar-header">Navigation</div></div><div id="everything-else"><h1 id="styleguide">Style guide</h1>
 
 <p>I had big problems with style in the 106s.  "What is this thing called style?!" I cried. "I came into CS because I liked how I could be sure I was absolutely right about something, and now you're telling me that I don't even had that?"</p>
 
@@ -6,7 +62,7 @@
 
 <h2 id="whatisstyle">What is style?</h2>
 
-<p>Good style means: Your code is easy to understand, and it's easy to modify. </p>
+<p>Good style means: Your code is <em>easy to understand</em>, and it's <em>easy to modify.</em></p>
 
 <p>That's it! If you're not sure if something is stylistic, just ask yourself if it makes the code easier to understand and modify. If it is, it's more stylish :)</p>
 
@@ -35,7 +91,7 @@
 
 <p>Please never do this. This is like, worse than the 7 deadly sins. All at the same time. BY FAR.</p>
 
-<h3 id="indentation">Indentation</h3>
+<h4 id="aminorissue">A minor issue</h4>
 
 <p>Don't mix tabs and spaces - just use one or the other. If you do, something like this might happen to you: <img src="http://www.emacswiki.org/pics/static/TabsSpacesBoth.png" alt="tabs and spaces" title="" /></p>
 
@@ -99,7 +155,11 @@ private void karelMoveFunction(){
 
 <h3 id="dontrepeatyourself">Don't Repeat Yourself</h3>
 
-<p>Repetition makes code <em>hard to modify.</em> That's because if I want to change what you've repeated, I have to change it in many different places.</p>
+<h3 id="dontrepeatyourself">Don't Repeat Yourself</h3>
+
+<h3 id="dontrepeatyourself">Don't Repeat Yourself</h3>
+
+<p>Repetition makes code <em>hard to modify.</em> That's because if I want to change what you've repeated, I have to change it in many different places. Imagine how annoying it would be if I wanted to rename this section to Redundancy or something.</p>
 
 <h4 id="sometimesrepetitioniseasytosee">Sometimes repetition is easy to see.</h4>
 
@@ -139,12 +199,11 @@ add(rect3);
  * and fills it if the filled boolean is true. This function is used
  * to make a diagonal row of squares in the top left. */
 private void makeSquare(int x, int y, bool filled) {
+  GRect square = new GRect(100, 100, 50, 50);
+  square.setFilled(true);
+  add(square);
+}
 </code></pre>
-
-<p>GRect square = new GRect(100, 100, 50, 50);
-      square.setFilled(true);
-      add(square);
-    }</p>
 
 <p>Now we can replace the main code with:</p>
 
@@ -215,4 +274,4 @@ private void tryLeaveBeeperAhead() {
 
 <p>The 106s don't really reflect true real world code, especially with regards to #2 - since in class we finish our code in a week or two and move on. That makes the purpose of style  a little opaque. Style comes truly into play when you're editing code that's been around for months or years (remember, you never finish!), code that you didn't even write. Then suddenly good style makes a <em>huge</em> difference. Edits that might take a few minutes in a good code base suddenly take hours, or days, or weeks. (Really, weeks! You have to check through every dependency to make sure you aren't breaking something, and you have to make sure you didn't break anything that was working before, and so much more. And since code is so hard to read, this can really take a long time.)</p>
 
-<p>So if you feel like the purpose of style is obscure - this is a good reason why. If you're feeling like style is pointless - well, you're kinda right. You haven't seen the huge gains that it it gives you, and you won't until you move into classes with larger projects (like cs108). But we have to instill proper style in you before you fully understand it because, if we didn't, bigger projects would be a disaster until you worked it out.</p></body>
+<p>So if you feel like the purpose of style is obscure - this is a good reason why. If you're feeling like style is pointless - well, you're kinda right. You haven't seen the huge gains that it it gives you, and you won't until you move into classes with larger projects (like cs108). But we have to instill proper style in you before you fully understand it because, if we didn't, bigger projects would be a disaster until you worked it out.</p></div></body></html>
