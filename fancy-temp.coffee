@@ -51,7 +51,7 @@ html ->
 
         # I check innerHTML as a fairly hacky sort if equality since testing
         # nodes for absolute equality is fairly difficult.
-        if best_header and ((not last_best) or (best_header[0].innerHTML != last_best[0].innerHTML))
+        if best_header and ((not last_best) or (best_header[0].id != last_best[0].id))
           last_best = best_header
           id = best_header.attr('id')
           $("#nav-item-#{id}").animate({backgroundColor: '#eee'}, 'slow')

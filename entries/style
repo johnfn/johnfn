@@ -103,7 +103,7 @@ Repetition makes code *hard to modify.* That's because if I want to change what 
 
 That should be replaced with 
 
-    for (int i=0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) {
         move();
     } 
 

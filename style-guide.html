@@ -38,7 +38,7 @@
             return best_header = $(this);
           }
         });
-        if (best_header && ((!last_best) || (best_header[0].innerHTML !== last_best[0].innerHTML))) {
+        if (best_header && ((!last_best) || (best_header[0].id !== last_best[0].id))) {
           last_best = best_header;
           id = best_header.attr('id');
           $("#nav-item-" + id).animate({
@@ -171,7 +171,7 @@ move();
 
 <p>That should be replaced with </p>
 
-<pre><code>for (int i=0; i &lt; 4; i++) {
+<pre><code>for (int i = 0; i &lt; 4; i++) {
     move();
 } 
 </code></pre>
