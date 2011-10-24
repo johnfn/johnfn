@@ -2,7 +2,7 @@
 
 I had big problems with style in the 106s.  "What is this thing called style?!" I cried. "I came into CS because I liked how I could be sure I was absolutely right about something, and now you're telling me that I don't even had that?"
 
-But I believe you can be absolutely right about style.
+But you can be absolutely right about style. You just have to know what style means in the first place.
 
 ## What is style?
 
@@ -10,7 +10,34 @@ Good style means: Your code is *easy to understand*, and it's *easy to modify.*
 
 That's it! If you're not sure if something is stylistic, just ask yourself if it makes the code easier to understand and modify. If it is, it's more stylish :)
 
+![Comic from www.xkcd.com](http://imgs.xkcd.com/comics/goto.png)   
+<sub> A common side effect of bad coding style. (Comic taken from www.xkcd.com.) </sub>  
+
 ## Stylistic problems
+
+### Commenting
+The most important rule of commenting is: explain what the code does *on a level higher than code*. If the idea is complex, explain *why*.
+
+Reading code is hard, but reading comments is (should be) easy.
+
+This commenting isn't great, because it just doesn't help me understand what the code does, or why.
+
+    /* Karel moves up, then left while he isn't blocked. */
+    private void karelMoveFunction(){
+      move();
+      turnLeft();
+      while (frontIsClear()){
+        move();
+      }
+    }
+
+A better comment might be:
+
+    /* This function moves Karel up, then left until he finds a wall. This
+     * is one of the core functions to help Karel escape a maze, since the
+     * maze consists of a lot of long passageways that go to the left. */
+
+Throughout this guide, I've tried to make my comments awesome quality (except when I'm calling attention to them as bad comments, like I was above :-)
 
 ### Indentation
 when you open a bracket, start indenting everything on the line *after* the bracket. When you close a bracket, start unindenting everything on the line *of* the bracket. 
@@ -39,7 +66,6 @@ Don't mix tabs and spaces - just use one or the other. If you do, something like
 There are a few important things here.
 
 * The name should describe what the function does. 
-
 * Be sure that the name tells the truth. This can be subtle.
 
         private void lineBeepersToWall() {
@@ -53,38 +79,13 @@ There are a few important things here.
 * Be sure the name isn't too long - 4 words is usually a maximum.
 
 ### Decomposition
-Break functions into smaller parts. It's hard to put a hard and fast rule on how long is too long for a function (since how do you measure when a function stops becoming "easy to understand/modify"?). If it's bigger than your screen is high, it's definitely too long.
+Break up big functions. It's hard to put a hard and fast rule on how long is too long for a function (since how do you measure when a function stops becoming "easy to understand/modify"?). If it's bigger than your screen is high, it's definitely too long.
 
-### Decomposition
-If you see it twice, decompose it into a function. The idea is that if I want to modify that logic later, I only have to modify one thing.
+If you see it twice, decompose it into a function. The idea is that if I want to modify what I was doing later, I only have to modify one thing.
 
-### Commenting
-The most important rule of commenting is: explain what the code does *on a level higher than code*. If the idea is complex, also explain *why*.
+### Variables and Scope
 
-Reading code is hard, but reading comments is (should be) easy.
-
-This commenting isn't great, because it just doesn't help me understand what the code does, or why.
-
-    /* Karel moves up, then left while he isn't blocked. */
-    private void karelMoveFunction(){
-      move();
-      turnLeft();
-      while (frontIsClear()){
-        move();
-      }
-    }
-
-A better comment might be:
-
-    /* This function moves Karel up, then left until he finds a wall. This
-     * is one of the core functions to help Karel escape a maze, since the
-     * maze consists of a lot of long passageways that go to the left. */
-
-Throughout this guide, I've tried to make my comments awesome quality (except when I'm calling attention to them as bad comments, like I was above :-)
-
-## More Abstract
-
-The 106s don't stress these as much since they are more abstract than the previous examples. I'll leave them here in case you want some food for thought.
+Variables should be defined in the place where they are seen as little as possible (but don't break your program!). The idea here is that you want to limit their visibility so that if it's being set incorrectly, you can track it down as fast as possible. Easy to modify - for yourself and others.
 
 ### Don't Repeat Yourself
 
@@ -140,8 +141,15 @@ Now we can replace the main code with:
     makeSquare(50, 50, false);
     makeSquare(100, 100, true);
 
+## More Abstract
+
+The 106s don't stress these as much since they are more abstract than the previous examples. I'll leave them here in case you want some food for thought.
 
 ### Don't Make me Remember Anything
+
+![Lenny!](http://www.moviefilmreview.com/wp-content/uploads/2011/08/memento-picture.jpg)  
+<sub> Just imagine that you're programming for the guy from Memento... </sub>  
+
 Everything I have to remember makes the code just slightly harder to modify.
 
 Imagine this code:
@@ -189,12 +197,16 @@ Notice we changed the function name to indicate the change in functionality.
 
 Warning: This section is a bit theoretical. Feel free to skip it.
 
-The two aspects of code that make it special are:
+In (say) Math, your proofs don't need to be stylistic - they just need to be right. In Physics, all people care about is the answer. Why is coding different?
+
+Code is special because:
 
 1. It's easier to write code than read it.
 
 2. Code is never finished.
 
-The 106s don't really reflect true real world code, especially with regards to #2 - since in class we finish our code in a week or two and move on. That makes the purpose of style  a little opaque. Style comes truly into play when you're editing code that's been around for months or years (remember, you never finish!), code that you didn't even write. Then suddenly good style makes a *huge* difference. Edits that might take a few minutes in a good code base suddenly take hours, or days, or weeks. (Really, weeks! You have to check through every dependency to make sure you aren't breaking something, and you have to make sure you didn't break anything that was working before, and so much more. And since code is so hard to read, this can really take a long time.)
+The 106s don't really reflect true real world code, especially because of #2. In class we finish our code in a week or two and move on. That makes the purpose of style  a little opaque. Style comes truly into play when you're editing code that's been around for months or years (remember, you never finish!), code that you didn't even write.
 
-So if you feel like the purpose of style is obscure - this is a good reason why. If you're feeling like style is pointless - well, you're kinda right. You haven't seen the huge gains that it it gives you, and you won't until you move into classes with larger projects (like cs108). But we have to instill proper style in you before you fully understand it because, if we didn't, bigger projects would be a disaster until you worked it out.
+Suddenly, good style makes a *huge* difference. Edits that might take a few minutes in a good code base suddenly take hours, or days, or weeks. (Really, weeks! You have to figure out where to start in the first place, and check through every dependency to make sure you aren't breaking something, and you have to make sure you didn't change anything that was working before, and so much more. And since code is so hard to read, this can really take a long time.)
+
+So if you feel like the purpose of style is obscure - this is a good reason why. You haven't seen the huge gains that it gives you, and you won't until you move into classes with larger projects (like cs108). But we have to instill proper style in you before you fully understand it because, if we didn't, bigger projects would be a disaster until you worked it out.

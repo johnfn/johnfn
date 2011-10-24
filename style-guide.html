@@ -58,7 +58,7 @@
 
 <p>I had big problems with style in the 106s.  "What is this thing called style?!" I cried. "I came into CS because I liked how I could be sure I was absolutely right about something, and now you're telling me that I don't even had that?"</p>
 
-<p>But I believe you can be absolutely right about style.</p>
+<p>But you can be absolutely right about style. You just have to know what style means in the first place.</p>
 
 <h2 id="whatisstyle">What is style?</h2>
 
@@ -66,7 +66,37 @@
 
 <p>That's it! If you're not sure if something is stylistic, just ask yourself if it makes the code easier to understand and modify. If it is, it's more stylish :)</p>
 
+<p><img src="http://imgs.xkcd.com/comics/goto.png" alt="Comic from www.xkcd.com" title="" /> <br />
+<sub> A common side effect of bad coding style. (Comic taken from www.xkcd.com.) </sub>  </p>
+
 <h2 id="stylisticproblems">Stylistic problems</h2>
+
+<h3 id="commenting">Commenting</h3>
+
+<p>The most important rule of commenting is: explain what the code does <em>on a level higher than code</em>. If the idea is complex, explain <em>why</em>.</p>
+
+<p>Reading code is hard, but reading comments is (should be) easy.</p>
+
+<p>This commenting isn't great, because it just doesn't help me understand what the code does, or why.</p>
+
+<pre><code>/* Karel moves up, then left while he isn't blocked. */
+private void karelMoveFunction(){
+  move();
+  turnLeft();
+  while (frontIsClear()){
+    move();
+  }
+}
+</code></pre>
+
+<p>A better comment might be:</p>
+
+<pre><code>/* This function moves Karel up, then left until he finds a wall. This
+ * is one of the core functions to help Karel escape a maze, since the
+ * maze consists of a lot of long passageways that go to the left. */
+</code></pre>
+
+<p>Throughout this guide, I've tried to make my comments awesome quality (except when I'm calling attention to them as bad comments, like I was above :-)</p>
 
 <h3 id="indentation">Indentation</h3>
 
@@ -116,42 +146,13 @@
 
 <h3 id="decomposition">Decomposition</h3>
 
-<p>Break functions into smaller parts. It's hard to put a hard and fast rule on how long is too long for a function (since how do you measure when a function stops becoming "easy to understand/modify"?). If it's bigger than your screen is high, it's definitely too long.</p>
-
-<h3 id="decomposition">Decomposition</h3>
+<p>Break up big functions. It's hard to put a hard and fast rule on how long is too long for a function (since how do you measure when a function stops becoming "easy to understand/modify"?). If it's bigger than your screen is high, it's definitely too long.</p>
 
 <p>If you see it twice, decompose it into a function. The idea is that if I want to modify that logic later, I only have to modify one thing.</p>
 
-<h3 id="commenting">Commenting</h3>
+<h3 id="variablesandscope">Variables and Scope</h3>
 
-<p>The most important rule of commenting is: explain what the code does <em>on a level higher than code</em>. If the idea is complex, also explain <em>why</em>.</p>
-
-<p>Reading code is hard, but reading comments is (should be) easy.</p>
-
-<p>This commenting isn't great, because it just doesn't help me understand what the code does, or why.</p>
-
-<pre><code>/* Karel moves up, then left while he isn't blocked. */
-private void karelMoveFunction(){
-  move();
-  turnLeft();
-  while (frontIsClear()){
-    move();
-  }
-}
-</code></pre>
-
-<p>A better comment might be:</p>
-
-<pre><code>/* This function moves Karel up, then left until he finds a wall. This
- * is one of the core functions to help Karel escape a maze, since the
- * maze consists of a lot of long passageways that go to the left. */
-</code></pre>
-
-<p>Throughout this guide, I've tried to make my comments awesome quality (except when I'm calling attention to them as bad comments, like I was above :-)</p>
-
-<h2 id="moreabstract">More Abstract</h2>
-
-<p>The 106s don't stress these as much since they are more abstract than the previous examples. I'll leave them here in case you want some food for thought.</p>
+<p>Variables should be defined in the place where they are seen as little as possible (but don't break your program!). The idea here is that you want to limit their visibility so that if it's being set incorrectly, you can track it down as fast as possible. Easy to modify - for yourself and others.</p>
 
 <h3 id="dontrepeatyourself">Don't Repeat Yourself</h3>
 
@@ -212,7 +213,14 @@ makeSquare(50, 50, false);
 makeSquare(100, 100, true);
 </code></pre>
 
+<h2 id="moreabstract">More Abstract</h2>
+
+<p>The 106s don't stress these as much since they are more abstract than the previous examples. I'll leave them here in case you want some food for thought.</p>
+
 <h3 id="dontmakemerememberanything">Don't Make me Remember Anything</h3>
+
+<p><img src="http://www.moviefilmreview.com/wp-content/uploads/2011/08/memento-picture.jpg" alt="Lenny!" title="" /> <br />
+<sub> Just imagine that you're programming for the guy from Memento... </sub>  </p>
 
 <p>Everything I have to remember makes the code just slightly harder to modify.</p>
 
@@ -265,13 +273,17 @@ private void tryLeaveBeeperAhead() {
 
 <p>Warning: This section is a bit theoretical. Feel free to skip it.</p>
 
-<p>The two aspects of code that make it special are:</p>
+<p>In (say) Math, your proofs don't need to be stylistic - they just need to be right. In Physics, all people care about is the answer. Why is coding different?</p>
+
+<p>Code is special because:</p>
 
 <ol>
 <li><p>It's easier to write code than read it.</p></li>
 <li><p>Code is never finished.</p></li>
 </ol>
 
-<p>The 106s don't really reflect true real world code, especially with regards to #2 - since in class we finish our code in a week or two and move on. That makes the purpose of style  a little opaque. Style comes truly into play when you're editing code that's been around for months or years (remember, you never finish!), code that you didn't even write. Then suddenly good style makes a <em>huge</em> difference. Edits that might take a few minutes in a good code base suddenly take hours, or days, or weeks. (Really, weeks! You have to check through every dependency to make sure you aren't breaking something, and you have to make sure you didn't break anything that was working before, and so much more. And since code is so hard to read, this can really take a long time.)</p>
+<p>The 106s don't really reflect true real world code, especially because of #2. In class we finish our code in a week or two and move on. That makes the purpose of style  a little opaque. Style comes truly into play when you're editing code that's been around for months or years (remember, you never finish!), code that you didn't even write.</p>
 
-<p>So if you feel like the purpose of style is obscure - this is a good reason why. If you're feeling like style is pointless - well, you're kinda right. You haven't seen the huge gains that it it gives you, and you won't until you move into classes with larger projects (like cs108). But we have to instill proper style in you before you fully understand it because, if we didn't, bigger projects would be a disaster until you worked it out.</p></div></body></html>
+<p>Suddenly, good style makes a <em>huge</em> difference. Edits that might take a few minutes in a good code base suddenly take hours, or days, or weeks. (Really, weeks! You have to figure out where to start in the first place, and check through every dependency to make sure you aren't breaking something, and you have to make sure you didn't change anything that was working before, and so much more. And since code is so hard to read, this can really take a long time.)</p>
+
+<p>So if you feel like the purpose of style is obscure - this is a good reason why. You haven't seen the huge gains that it gives you, and you won't until you move into classes with larger projects (like cs108). But we have to instill proper style in you before you fully understand it because, if we didn't, bigger projects would be a disaster until you worked it out.</p></div></body></html>
