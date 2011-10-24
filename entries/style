@@ -93,6 +93,8 @@ Variables should be defined in the place where they are seen as little as possib
 
 ### Don't Repeat Yourself
 
+![Redundancy](http://xkcdsw.com/content/img/2502.jpg)
+
 Repetition makes code *hard to modify.* That's because if I want to change what you've repeated, I have to change it in many different places. Imagine how annoying it would be if I wanted to rename this section to Redundancy or something.
 
 #### Sometimes repetition is easy to see.
