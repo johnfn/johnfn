@@ -1,0 +1,17 @@
+.normal {
+  float: left;
+  width: 45%;
+}
+
+.footnote {
+  float: right;
+  width: 45%;
+}
+
+.fn {
+  font-weight: bold;
+}
+
+body {
+  font-family: Georgia;
+}
