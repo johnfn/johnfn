@@ -28,11 +28,20 @@ $(function() {
     return (a_height < b_height ? -1 : (a_height > b_height ? 1 : 0));
   }
 
+  var num = 0;
+
   $("sup").sort(by_height).each(function(index) {
+    var $bold_other = $("#f_" + this.id);
     var $other = $("#f_" + this.id).parent();
     $other.css('position', 'absolute');
     $other.css('top', Math.max($(this).offset()['top'], lowest_so_far));
     lowest_so_far = bottom_of($other);
+
+    if ($(this).html().indexOf("sidestory") == -1) {
+      $(this).html("" + num);
+      $bold_other.html("" + num + ": ");
+      num++;
+    }
   });
 
   $("#centerspan").css('top', $(".normal").css('height'));
@@ -87,7 +96,7 @@ $(function() {
 <p><em>But certainly the most compelling part was the aspect of doing something</em> he was not supposed to do. <em>He wonders how the realm could ever mimic that.</em></p>
 <p>> <em>You weren't quite so helpful last time.</em></p>
 <p>VeraGames is always learning<sup id='23'>23</sup>.</p>
-<p>====.<sup id='sidestory2'>sidestory2</sup></p>
+<p>====<sup id='sidestory2'>sidestory2</sup></p>
 <p>LANCE DAURE is driving<sup id='i7'>i7</sup>. Two DICE descend from the rear view mirror. A bottle of SPARKLING APPLE CIDER<sup id='11'>11</sup> resides in the cupholder.</p>
 <p>LANCE DAURE is a big fan of convolution. CONVOLUTED NOVELS, like A GAME OF THRONES, are his favorite &mdash; he loves trying to work out all the little twists and turns before the the big reveal. He also enjoys movies about STEALTH and INFILTRATION.</p>
 <p>He notices a blinking light on his heads up indicator.</p>
@@ -302,7 +311,7 @@ $(function() {
 <div><b class='fn' id='f_15'>15: </b> <p>Or even realize.</p></div>
 <div><b style='display:none;' class='fn' id='f_sidestory4'>sidestory4:</b> <p>====</p>
 <p>ONE: But the game is a denial of basic humanity. The game tweaks the emotions of Players, making them enjoy the game more. VeraGames replaces true emotions with new ones. Unnatural ones, in the literal sense of the word. We can see this happening to Dan.</p>
-<p><strong>Begin branched conversation.</strong>[212]</p>
+<p><strong>Begin branched conversation.</strong>[g]</p>
 <p><center class="column first"></p>
 <p><strong>Branch 1</strong></p>
 <p>TWO: How do you know about Dan?</p>
@@ -310,18 +319,18 @@ $(function() {
 <p></center></p>
 <p><center class="column"></p>
 <p><strong>Branch 2</strong></p>
-<p>TWO: But VeraGames only does this to overcome the initial surprise of virtual reality, and only at the very initial stages while the user is still getting used to the game[6].</p>
+<p>TWO: But VeraGames only does this to overcome the initial surprise of virtual reality, and only at the very initial stages while the user is still getting used to the game[h].</p>
 <p>ONE: But if VeraGames didn't do it, then the seed growing in the Player's mind would grow and grow until&mdash;</p>
 <p>TWO: Baseless conjecture.</p>
 <p></center></p>
 <p><strong>End branched conversation</strong></p>
-<p>ONE: Human beings are just fleshy turing machines[8].</p>
+<p>ONE: Human beings are just fleshy turing machines[i].</p>
 <p>TWO: What is this, determinism?</p>
-<p>ONE: Yes, determinism! The Game lies to the Players! The notion of choice is a lie. We only end up making a single choice. There is only one life lived. We are not nondeterministic[99].</p>
+<p>ONE: Yes, determinism! The Game lies to the Players! The notion of choice is a lie. We only end up making a single choice. There is only one life lived. We are not nondeterministic[j].</p>
 <p>TWO: No. That I will not accept. We always give a choice. Players always have choice.</p>
-<p>[212] Conversations can be branched into two separate conversations when one participant thinks of many things to say at the same time. This requires fairly costly set up, usually done by people who are pretentious enough to believe their conversations merit it.</p>
-<p>[6] Not for lack of trying. See Hutchins vs VeraGames Industries, (2048).</p>
-<p>[8]</p>
+<p>[g] Conversations can be branched into two separate conversations when one participant thinks of many things to say at the same time. This requires fairly costly set up, usually done by people who are pretentious enough to believe their conversations merit it.</p>
+<p>[h] Not for lack of trying. See Hutchins vs VeraGames Industries, (2048).</p>
+<p>[i]</p>
 <p>Turing machines are the simplest possible computers.</p>
 <p>Say you have a long strip of paper with letters on it &mdash; A, B, whatever. You have a little computer above a certain position on the strip. It can do any of the following actions, but only one at a time:</p>
 <ul>
@@ -336,7 +345,7 @@ $(function() {
 </li>
 </ul>
 <p>From that, you can solve any problem that the big fancy computer you have at home can. It is really quite humbling.</p>
-<p>[99] A small joke. Non-deterministic turing machines are theoretical constructs that <em>can</em> make many choices at the same time.</p></div>
+<p>[j] A small joke. Non-deterministic turing machines are theoretical constructs that <em>can</em> make many choices at the same time.</p></div>
 <div><b class='fn' id='f_i1'>i1: </b> <p>A murder in the Realm is not permanent as is murder in Real Life. But it was determined that death should not be without effect. Those who break the laws of the Realm should be punished accordingly. So death will terminate your current character in the Realm, but will not restrict you from making a new character.</p>
 <p>Permanent bans from the Realm are exceedingly rare.</p></div>
 <div><b class='fn' id='f_f5'>f5: </b> <p>Jane only rarely slips up grammatically. Lance decides not to bring it up because she seems anxious. He instead catalogs it for later retrieval. A true friend.</p></div>
@@ -345,38 +354,37 @@ $(function() {
 <div><b class='fn' id='f_4'>4: </b> <p>http://www.homestarrunner.com/sbemail94.html</p></div>
 <div><b style='display:none;' class='fn' id='f_sidestory7'>sidestory7:</b> <p>====</p>
 <p>Jane is reading a novel in the Real World when Dan gives her a call.</p>
-<p>"I don't really like the Game.[26]"</p>
-<p>"Dan, you've been playing for like 2 minutes. What have I told you about snap judgement?"[f6]</p>
+<p>"I don't really like the Game.[d]"</p>
+<p>"Dan, you've been playing for like 2 minutes. What have I told you about snap judgement?"[e]</p>
 <p>"No, not that. I mean, the concept of the Game itself. I just... this game enables billions of people to squander their lives away. And it's <em>fun.</em> We're like rats recently introduced to a food pellet lever."</p>
 <p>"But the Game is just entertainment. Would you say that a library allowed people to squander their lives away? Or movie theaters? When The Beatles wrote Abbey Road, was it an attempt to ruin civilization? Of course not. If anything, they contributed to culture. The Game is a contribution to culture."</p>
 <p>There is a pause.</p>
 <p>"You don't believe what you're saying at all, do you. You're just playing devil's advocate."</p>
 <p>An sigh on the other line.</p>
-<p>"Fine. You're right. I don't." She sighs. "Honestly? Disliking it makes me feel old[22]. Resistant to change. I feel like an antibody of civilization. Rejecting the new." A pause. "There is a fine balance to strike in order to use the game without becoming addicted to the game. Without forgetting why we are here in the first place. Dan, I have to take breaks. I only play the Game maybe once, twice a week. And after I stop? I can't focus. I'm jittery. I try to sit down and read something &mdash; and I can't. My eyes move across the page but I'm thinking about my mystery. The game trains you to want excitement. It takes me a few days to reset. I know I'm back to normal when I pull out some David Foster Wallace and don't immediately get lost."</p>
+<p>"Fine. You're right. I don't." She sighs. "Honestly? Disliking it makes me feel old[f]. Resistant to change. I feel like an antibody of civilization. Rejecting the new." A pause. "There is a fine balance to strike in order to use the game without becoming addicted to the game. Without forgetting why we are here in the first place. Dan, I have to take breaks. I only play the Game maybe once, twice a week. And after I stop? I can't focus. I'm jittery. I try to sit down and read something &mdash; and I can't. My eyes move across the page but I'm thinking about my mystery. The game trains you to want excitement. It takes me a few days to reset. I know I'm back to normal when I pull out some David Foster Wallace and don't immediately get lost."</p>
 <p>She continues. "But most people don't stop playing. The game creates its own consumers. Consuming VeraGames' stupid product placement and banner ads &mdash; and most importantly? Consuming entertainment."</p>
 <p>"And I can't just abandon the game. Too much of life is centered around this thing. My friends. My family. I feel like &mdash; like a hermit for only logging on a few times a week. You know, like those guys who would go out in the middle of nowhere &mdash; and just <em>live?</em> I am the modern day equivalent. And that is ridiculous."</p>
-<p>[f6] What she told him was that he has a cognitive bias where once he makes a judgement, even if he doesn't believe it, he's much more likely to actually end up believing it. In a study, researchers told participants who had no leanings beforehand to take a chosen side of an issue. After the study, participants overwhelmingly favored the side they had been assigned.</p>
-<p>[26] Even outside of the Realm, communication generally routes through VeraGames' servers and wires. The Realm is (from a simplified perspective) the world's largest communication network, so VeraGames could branch into other communication markets with ease.</p>
-<p>[f7] The figures behind VeraGames have so far managed to stay relatively anonymous.</p>
-<p>[22] She wonders for a second if this is itself a bias.</p></div>
+<p>[e] What she told him was that he has a cognitive bias where once he makes a judgement, even if he doesn't believe it, he's much more likely to actually end up believing it. In a study, researchers told participants who had no leanings beforehand to take a chosen side of an issue. After the study, participants overwhelmingly favored the side they had been assigned.</p>
+<p>[d] Even outside of the Realm, communication generally routes through VeraGames' servers and wires. The Realm is (from a simplified perspective) the world's largest communication network, so VeraGames could branch into other communication markets with ease.</p>
+<p>[f] She wonders for a second if this is itself a bias.</p></div>
 <div><b style='display:none;' class='fn' id='f_sidestory3'>sidestory3:</b> <p>====</p>
 <p>ONE: The Realm seems to be... a backdoor into the mind. A way to smooth over some of the demands of a conscious mind. A way to fufill Maslow's hierarchy without <em>actually</em> doing so, if you will.</p>
-<p>TWO: But happiness is happiness. Why should we worry about the mechanism? Maslow is arbitrary. Evolution chooses what makes us happy, and evolution is arbitrary. The two strongest correlates to happiness are relationship status and job satisfaction. Objectively, utterly meaningless[f1].</p>
+<p>TWO: But happiness is happiness. Why should we worry about the mechanism? Maslow is arbitrary. Evolution chooses what makes us happy, and evolution is arbitrary. The two strongest correlates to happiness are relationship status and job satisfaction. Objectively, utterly meaningless[a].</p>
 <p>ONE: But if we are to abandon evolution, abandon our only guide through the darkness (if you will), then don't we in some way sacrifice our humanity, in the deepest sense?</p>
 <p>TWO: We aren't abandoning humanity. We're creating a new humanity.</p>
 <p>ONE: But the humanity that we have created is deeply unsatisfying.</p>
 <p>TWO: Who are you to judge? Who are you to say that 20 billion humans are wrong? Are somehow <i>in</i>human? How can you possibly say that your opinion is worth more than theirs?</p>
 <p><em>A pause fills the conversation.</em></p>
-<p>TWO: On the other hand, the Game is a nice solution to the Fermi problem[9].</p>
-<p>[f1]: <em>Things he thought but did not say:</em></p>
+<p>TWO: On the other hand, the Game is a nice solution to the Fermi problem[b].</p>
+<p>[a]: <em>Things he thought but did not say:</em></p>
 <p>TWO: You need to separate your consciousness, your <em>human</em> being, if you will, from the greater universe. You must examine with a detached mind. Imagine pure deconstructionism: we are just atoms. I know you want to say: <em>No.</em> That we are something more than the sum of our parts. That we live, breathe, eat, think, dream, create. You are right. But it is not relevant. Imagine this.</p>
-<p>TWO: Imagine the vast space of all possible goals. Imagine everything. Imagine the goal of simply hoarding as much carbon as you can. Imagine the goal of inciting certain chemical reactions within your own body. Imagine the goal of seeking out the clearest white color imaginable. Imagine being a blue minimizing robot[1a]. And so forth.</p>
+<p>TWO: Imagine the vast space of all possible goals. Imagine everything. Imagine the goal of simply hoarding as much carbon as you can. Imagine the goal of inciting certain chemical reactions within your own body. Imagine the goal of seeking out the clearest white color imaginable. Imagine being a blue minimizing robot[c]. And so forth.</p>
 <p>TWO: Now you see this space. Now look at all the goals that humans hold. They are points of light in the darkness. Is there any rhyme or reason to their choice?</p>
 <p>TWO: Evolution. That is the only rhyme or reason.</p>
 <p>TWO: But evolution is just one of the many selection mechanisms along another vast darkness.</p>
 <p>TWO: I will spare you another effete metaphor.</p>
-<p>[1a] http://lesswrong.com/lw/6ha/the_blueminimizing_robot/</p>
-<p>[9]</p>
+<p>[c] http://lesswrong.com/lw/6ha/the_blueminimizing_robot/</p>
+<p>[b]</p>
 <p>The Fermi Problem is this: Given the universe is unfathomably vast, and alien life must have arisen somewhere, why has none of it tried to contact us?</p></div>
 <div><b style='display:none;' class='fn' id='f_sidestory5'>sidestory5:</b> <p>====</p>
 <p>TWO: We've made a mistake.</p>
