@@ -46,7 +46,7 @@ $(function() {
     $("sup").each(function(){ if (this.innerHTML.indexOf("sidestory") != -1) { $(this).css('display', 'none');}});
 
     // Attach all footnote numbers to corresponding text, with no breaks in between.
-    $(".fn").each(function(){ $(this).parent().children("p").prepend($(this)); });
+    $(".fn").each(function(){ $(this).parent().children("p").first().prepend($(this)); });
 
 });
 </script>
@@ -84,7 +84,7 @@ $(function() {
 <p><em>Although Dan works an 8-5 programming job, if pressed he would probably admit that the most interesting work he's ever done was several years ago, when he was a hacker. He finds tearing things down to be more interesting intellectually than building them up.</em></p>
 <p><em>Programming was always a fight against the self.</em></p>
 <p><em>But hacking. Hacking was Dan against another. He had to find the other's mistakes, the cracks in his mortar, while not making mistakes himself.</em></p>
-<p><em>But certainly the most compelling part was the aspect of doing something</em> he was not supposed to do. <em>He wonders how the realm could ever mimick that.</em></p>
+<p><em>But certainly the most compelling part was the aspect of doing something</em> he was not supposed to do. <em>He wonders how the realm could ever mimic that.</em></p>
 <p>> <em>You weren't quite so helpful last time.</em></p>
 <p>VeraGames is always learning<sup id='23'>23</sup>.</p>
 <p>====.<sup id='sidestory2'>sidestory2</sup></p>
@@ -93,10 +93,10 @@ $(function() {
 <p>He notices a blinking light on his heads up indicator.</p>
 <p>Lance usually thinks in dialog. Usually with Jane. He's never considered that this might be unusual.</p>
 <p><em>"Seems like that Luddite friend of ours finally logged on."</em></p>
-<p>Lance is totally unaware that he talks differently in his mind than he does in person. His mental dialog is nearly indistinguishable from Jane's personality (which would make his typical imagined conversation confusing to an outside listener). But whenever he <em>actually</em> starts talking to people, his personality takes on a loopy, discursive quality which Jane once compared to Lucida Handwriting<sup id='13'>13</sup>. Shocked, he retorted he never saw himself anything other than Georgia<sup id='14'>14</sup>.</p>
+<p>Lance is totally unaware that he talks differently in his mind than he does in person. His mental dialog is nearly indistinguishable from Jane's personality (which would make his typical imagined conversation confusing to an outside listener). But whenever he <em>actually</em> starts talking to people, his personality takes on a loopy, discursive quality which Jane once compared to Lucida Handwriting<sup id='13'>13</sup>. Shocked, he retorted he never considered himself anything other than Georgia<sup id='14'>14</sup>.</p>
 <p>He has yet to reconcile this.</p>
-<p><em>Imaginary-Jane chuckes. "Funny, maybe all those end-of-the-world predictions are true after all."</em></p>
-<p>(Another thing he has yet to reconcile<sup id='15'>15</sup> is that Imaginary-Jane always finds him more interesting than Actual-Jane.)</p>
+<p><em>Imaginary-Jane chuckles. "Funny, maybe all those end-of-the-world predictions are true after all."</em></p>
+<p>(Another thing he has yet to reconcile<sup id='15'>15</sup> is that Imaginary-Jane finds him more interesting than Actual-Jane.)</p>
 <p>====<sup id='sidestory4'>sidestory4</sup></p>
 <p>JANE ALIA is completing her fifth QUEST. A QUEST can take anywhere from days to months of time to complete. She is located within the STUDY of a MANSION; not her own. A BOOKSHELF of various TOMES is located behind her, a SWIVEL CHAIR to her left. She is investigating a MURDER<sup id='i1'>i1</sup>.</p>
 <p>====</p>
@@ -142,12 +142,11 @@ $(function() {
 <p>"..." Dan could just feel her eyebrows arched in anticipation.</p>
 <p>"Maybe."</p>
 <p>"..." Great. Now there's no way he can ask.</p>
-<p>He speaks. "Good God, you know way too much about me."</p>
+<p>He speaks. "Good God, you are too good at this."</p>
 <p>"Now you're avoiding the subject?"</p>
 <p>"ARGH! I hate you." Dan closes the connection.</p>
 <p>Then he reopens it. "Okay, I don't hate you. But I'm never going to tell you what it was." He turns it off again.</p>
-<p>Besides, at the rate that conversation was going, she could probably just guess it anyways.</p>
-<p>.<sup id='sidestory7'>sidestory7</sup></p>
+<p>Besides, at the rate that conversation was going, she could probably just guess it anyways.<sup id='sidestory7'>sidestory7</sup></p>
 <p>====</p>
 <p>Jane turns over a journal in her hands. Garret apparently still used pen and paper, even though the Game provides anything from keyboards to mind-to-data dumps. Especially strange since, from all accounts, he was definitely a computer guy. Couldn't seem to drag him away from the thing. Even on the Realm. Jane thinks computing in the Realm is extra intense because you're on two computers at the same time, if you think about it.</p>
 <p>She browses to the end of the journal.</p>
@@ -158,19 +157,16 @@ $(function() {
 <p><em>This must be the most boring journal ever.</em></p>
 <p><strong>Jan 15</strong></p>
 <p>The game claims that suicide is the</p>
-<p>The pencil is hurried and rough, and it seems like he was interrupted almost immediately. There's a mention of suicide, which simply doesn't square with anything that Jane has heard. She has at least two eye witnesses claiming murder. Even if they are both wrong, in-game suicide is practically unheard of. The game is notoriously good at creating situations that Players will enjoy.</p>
-<p>.<sup id='sidestory3'>sidestory3</sup></p>
+<p>The pencil is hurried and rough, and it seems like he was interrupted almost immediately. There's a mention of suicide, which simply doesn't square with anything that Jane has heard. She has at least two eye witnesses claiming murder. Even if they are both wrong, in-game suicide is practically unheard of. The game is notoriously good at creating situations that Players will enjoy.<sup id='sidestory3'>sidestory3</sup></p>
 <p>====</p>
 <p>"Hey Lance."</p>
 <p>"Hey Jane. Have you ever considered brushing your teeth?"</p>
 <p>"Are you telling me I have bad breath?"</p>
-<p>"No. I mean. Like in an abstract way. Like&mdash; it's just&mdash; a strange thing to do. You're like... cleaning your <em>bone.</em> You never even touch your bones otherwise. They're usually hidden. Behind skin or something. But teeth aren't. Isn't that weird?"</p>
+<p>"No. I mean. Like in an abstract way. It's just a strange thing to do. You're like... cleaning your <em>bone.</em> You never even touch your bones otherwise. You know, bone is usually hidden, behind like skin or something. But teeth aren't. Isn't that weird?"</p>
 <p>Jane stutters. "Lance&mdash; Okay&mdash; First&mdash; this is weird. Even for you. Second, you totally hijacked the conversation. It was me calling <em>you!</em> At least, I think. I can't remember. I think I had something to say but now I've forgotten it entirely."</p>
 <p>"I've never heard you so flustered."</p>
 <p>"I'm&mdash; I'm going to have to call back." She hangs up.</p>
-<p>====</p>
-<p>.<sup id='sidestory5'>sidestory5</sup></p>
-<p>====</p>
+<p>====<sup id='sidestory5'>sidestory5</sup></p>
 <p>Hey Dan.</p>
 <p>> <em>That's weird.</em></p>
 <p>What's weird, Dan?</p>
@@ -214,7 +210,7 @@ $(function() {
 <p>LANCE: I've never heard you more flustered.</p>
 <p>JANE: Seems to be happening a lot more lately.</p>
 <p>LANCE: That could only be a good thing. You should let your hair back a little. Stuff like that.</p>
-<p>JANE: Let's not lose focus here. Dan, you're telling me that you found a way to destroy the entire Game and the Game AI is fine with it, for some reason<sup id='18'>18</sup>. No, more than fine. Complicit.</p>
+<p>JANE <em>[Almost smiles]:</em> Dan, you're telling me that you found a way to destroy the entire Game and the Game AI is fine with it, for some reason<sup id='18'>18</sup>. No, more than fine. Complicit.</p>
 <p>DAN: That seems to be the case, yes.</p>
 <p>JANE: Okay. Why you then?</p>
 <p>DAN: I have no idea.</p>
@@ -222,17 +218,17 @@ $(function() {
 <p>DAN: Assuming it was going through with this plan, it had to choose <em>someone.</em></p>
 <p>LANCE: Mathematically, that is true.</p>
 <p>JANE: But&mdash; But destroying the game would cause the collapse of civilization!</p>
-<p>LANCE: Weren't you telling me that the Game had <em>already caused</em> the collapse of civilization<sup id='19'>19</sup>?</p>
+<p>LANCE: Weren't you telling me just the other day that the Game had <em>already caused</em> the collapse of civilization<sup id='19'>19</sup>?</p>
 <p>JANE: I &mdash; <em>argh!</em> &mdash; yes<sup id='20'>20</sup>. But&mdash; but this seems <em>worse,</em> somehow, and I wouldn't want to <em>cause</em> it.</p>
 <p>DAN: The Game AI says that yes, for a few years after the destruction of the Realm, the world will be worse off.</p>
 <p>JANE: See?</p>
 <p>DAN: But it claims a high probability that a new Realm will be created in under fifteen years. This new Realm will expand on it's predecessor, but it will fix the problems of the old Realm. The Game AI claims that there are a few steps we can take to ensure that this becomes a possibility.</p>
-<p>JANE [takes a moment to think.]: Okay. I may just be interested.</p>
+<p>JANE: And we can trust the AI? Well, we probably don't know either way. <em>[Takes a moment to think.]</em> Okay. I may just be interested.</p>
 <p>====</p>
 <p>VeraGames bootstraps<sup id='24'>24</sup>.</p>
 <p>What this means is that the entire VeraGames operation is located within the Realm. They were the first to bootstrap, of course &mdash; they had to be &mdash; but many others followed suit shortly after.</p>
 <p>The Game AI tells Dan: <em>Arrive late at night. Most maintainers, programmers and content creators leave after six, and the area should be clear by ten. VeraGames has many security cameras, but no guards. Walk down the main hallway, and take a right into the server room. In the middle of the server room, you will find a single terminal. This is an interface over the millions of servers that VeraGames controls.</em></p>
-<p>> Why not?</p>
+<p>> No guards?</p>
 <p><em>It's part of their own mission. No more boring, menial jobs. People should be enjoying themselves. Especially in the Realm. And besides, they have me. Omnipresent, omnipotent me &mdash; and I am ostensibly concerned with my own well being.</em></p>
 <p>> But they have cameras for some reason.</p>
 <p><em>Probably some fringe paranoia.</em></p>
@@ -246,14 +242,14 @@ $(function() {
 <p>"VeraGames controls all of this. I suppose they can be a little lavish."</p>
 <p>Dan walks up to a brightly lit terminal in the center of the room and begins typing. After a few minutes: "Done."</p>
 <p>"Done?" asks Jane.</p>
-<p>"Well, not really. This just gives me access to the Realm's mainframe back home. There's no way we have enough time here to take down the entire Realm."</p>
+<p>"Well, not really. This just gives me access to the Realm's mainframe back home. There's no way we have enough time here to take down the entire Realm. It's a start, though."</p>
 <p>====</p>
 <p>Dan settles down at his computer at home, and tunnels into the mainframe. Vast stores of data stare back at him. <em>Where to start?</em></p>
 <p><em>Hey Dan. Need some help?</em></p>
 <p>====</p>
 <p>"Lance."</p>
 <p>"Oh hey Jane. Do you ever have that thing where you think back to your past history and totally reinterpret situations you had thought were benign? Like there was this one time when I was in 5th grade and I went up to ask this girl I had never talked to before something. And then I looked into her eyes &mdash; beautiful eyes &mdash; and totally forgot what I was talking about. At the time I didn't think anything about it. But now I love it. I was such a romantic! I didn't even know what that meant at the time."</p>
-<p>"Lance. I swear to God. At first I thought you were just... being you. But now I'm starting to suspect you're calculating this stuff to totally weird me out."</p>
+<p>"Lance. I swear to God. At first I thought you were just... being you. But now I think you're calculating this stuff to maximally weird me out."</p>
 <p>Lance sighs. "Yeah. I was trying to catch you off guard. You would be surprised how hard that is."</p>
 <p>Jane chuckles. She wouldn't admit it, but she considers this a compliment.</p>
 <p>====</p>
@@ -284,7 +280,7 @@ $(function() {
 <p>They must have had an effect. Dan hardly sees anything except ghosts.</p></div>
 <div><b class='fn' id='f_10'>10: </b> <p>In text based adventure games of yore, the adventurer would be provided with a description of where they are (like: You enter the dungeon. You see a flickering light off in the distance.), and a prompt (>). Players type their action (like: Follow light) after the prompt, the game outputs a new description and a prompt, and so on.</p></div>
 <div><b class='fn' id='f_21'>21: </b> <p>VeraGames claims that the reason you have to pay for a bed/couch/whatever at all is that it needs to dedicate some fraction of a CPU to physics simulation. Any CS major with half a brain can tell you this is total hogwash. With today's hyptherthreaded polycores, the cost of simulating a couch an insultingly small number of penny atoms.</p></div>
-<div><b class='fn' id='f_16'>16: </b> <p>Although VeraGames uses writers and artists as examples of occuptations, creative occupations comprise a relatively small minority of the Realm.</p></div>
+<div><b class='fn' id='f_16'>16: </b> <p>Although VeraGames uses writers and artists as examples of occupations, creative occupations comprise a relatively small minority of the Realm.</p></div>
 <div><b class='fn' id='f_23'>23: </b> <p>The way that AI's "work" is through learning and training. AI particularly makes use of <em>training sets.</em> You show the AI hundreds of different classified examples (for example: This letter is an A. This letter is a B.), and for each one, you show it the correct answer. This is the training set. Then you run some algorithms, and the AI can now distinguish the categories (for example: It can tell A's from B's.)</p></div>
 <div><b style='display:none;' class='fn' id='f_sidestory2'>sidestory2:</b> <p>====</p>
 <p>PALAVER is held.</p>
@@ -305,8 +301,8 @@ $(function() {
 <div><b class='fn' id='f_14'>14: </b> <p>Georgia is the font used in this story.</p></div>
 <div><b class='fn' id='f_15'>15: </b> <p>Or even realize.</p></div>
 <div><b style='display:none;' class='fn' id='f_sidestory4'>sidestory4:</b> <p>====</p>
-<p>ONE: But the game is a denial of basic humanity. The game tweaks the emotions of Players, making them enjoy the game more. VeraGames replaces true emotions with new ones. Unnatural ones, in the literal sense of the word.</p>
-<p><strong>Begin branched conversation.</strong></p>
+<p>ONE: But the game is a denial of basic humanity. The game tweaks the emotions of Players, making them enjoy the game more. VeraGames replaces true emotions with new ones. Unnatural ones, in the literal sense of the word. We can see this happening to Dan.</p>
+<p><strong>Begin branched conversation.</strong>[212]</p>
 <p><center class="column first"></p>
 <p><strong>Branch 1</strong></p>
 <p>TWO: How do you know about Dan?</p>
@@ -321,8 +317,9 @@ $(function() {
 <p><strong>End branched conversation</strong></p>
 <p>ONE: Human beings are just fleshy turing machines[8].</p>
 <p>TWO: What is this, determinism?</p>
-<p>ONE: Yes, determinism! The Game lies to the Players! The notion of choice is a lie. We cannot make many choices simultaneously. There is only one life lived. We are not nondeterministic[99].</p>
+<p>ONE: Yes, determinism! The Game lies to the Players! The notion of choice is a lie. We only end up making a single choice. There is only one life lived. We are not nondeterministic[99].</p>
 <p>TWO: No. That I will not accept. We always give a choice. Players always have choice.</p>
+<p>[212] Conversations can be branched into two separate conversations when one participant thinks of many things to say at the same time. This requires fairly costly set up, usually done by people who are pretentious enough to believe their conversations merit it.</p>
 <p>[6] Not for lack of trying. See Hutchins vs VeraGames Industries, (2048).</p>
 <p>[8]</p>
 <p>Turing machines are the simplest possible computers.</p>
@@ -349,8 +346,8 @@ $(function() {
 <div><b style='display:none;' class='fn' id='f_sidestory7'>sidestory7:</b> <p>====</p>
 <p>Jane is reading a novel in the Real World when Dan gives her a call.</p>
 <p>"I don't really like the Game.[26]"</p>
-<p>"Dan, you've been playing for like 2 minutes. What have I told you about snap judgements?"[f6]</p>
-<p>"No, not that. I mean, the concept of the Game itself. I just... this game enables billions of people to squander their lives away. We're like rats recently introduced to a food pellet lever."</p>
+<p>"Dan, you've been playing for like 2 minutes. What have I told you about snap judgement?"[f6]</p>
+<p>"No, not that. I mean, the concept of the Game itself. I just... this game enables billions of people to squander their lives away. And it's <em>fun.</em> We're like rats recently introduced to a food pellet lever."</p>
 <p>"But the Game is just entertainment. Would you say that a library allowed people to squander their lives away? Or movie theaters? When The Beatles wrote Abbey Road, was it an attempt to ruin civilization? Of course not. If anything, they contributed to culture. The Game is a contribution to culture."</p>
 <p>There is a pause.</p>
 <p>"You don't believe what you're saying at all, do you. You're just playing devil's advocate."</p>
@@ -364,7 +361,7 @@ $(function() {
 <p>[22] She wonders for a second if this is itself a bias.</p></div>
 <div><b style='display:none;' class='fn' id='f_sidestory3'>sidestory3:</b> <p>====</p>
 <p>ONE: The Realm seems to be... a backdoor into the mind. A way to smooth over some of the demands of a conscious mind. A way to fufill Maslow's hierarchy without <em>actually</em> doing so, if you will.</p>
-<p>TWO: But happiness is happiness. Why should we worry about the mechanism? Maslow is arbitrary. Evolution choses what makes us happy, and evolution is arbitrary. The two strongest correlates to happiness are relationship status and job satisfaction. Objectively, utterly meaningless[f1].</p>
+<p>TWO: But happiness is happiness. Why should we worry about the mechanism? Maslow is arbitrary. Evolution chooses what makes us happy, and evolution is arbitrary. The two strongest correlates to happiness are relationship status and job satisfaction. Objectively, utterly meaningless[f1].</p>
 <p>ONE: But if we are to abandon evolution, abandon our only guide through the darkness (if you will), then don't we in some way sacrifice our humanity, in the deepest sense?</p>
 <p>TWO: We aren't abandoning humanity. We're creating a new humanity.</p>
 <p>ONE: But the humanity that we have created is deeply unsatisfying.</p>
@@ -396,7 +393,7 @@ $(function() {
 <p>TWO: But what does it matter? It's a game. Reset it. Game over.</p>
 <p>ONE: Are you insane? Have you truly isolated yourself from the Game to such an extend that you don't realize the implications of that action?</p>
 <p>TWO: Humor me.</p>
-<p>ONE: You really don't know." <em>Pause.</em></p>
+<p>ONE: You really don't know." <em>[Pause.]</em></p>
 <p>TWO: Enough with your condescension.</p>
 <p>ONE: Apologies. The Game is not just... How to put this. The Game is part of the world. 80% of the world's sales are conducted through the game. Nearly all of the Fortune 500 have some establishment in the game, and over half sell services only made possible due to the Game.</p>
 <p>TWO: So what you're saying is &mdash;</p>
@@ -418,7 +415,7 @@ $(function() {
 <div><b class='fn' id='f_18'>18: </b> <p>Jane starts to wonder about the ethical consequences of ending the life of an AI.</p></div>
 <div><b class='fn' id='f_19'>19: </b> <p>Nope. That was one of his internal dialogues.</p></div>
 <div><b class='fn' id='f_20'>20: </b> <p>It is unknown why Jane agrees here. Perhaps stress. Or perhaps her internal dialog is conversations with Lance.</p></div>
-<div><b class='fn' id='f_24'>24: </b> <p>In Computer Science, you write source code &mdash; generally human readable &mdash; which is then translated into code that can be read by a machine with a program known as a <em>compiler.</em> Now, the compiler is written in source code, so how does <em>it</em> ever get translated into machine code? Why, any CS student would tell you, with a distinct air of condescenscion, it translates itself! This process is known as bootstrapping. VeraGames' use of the word is similar, but with a semantic distance sufficient to aggrivate most pedantic programmers.</p></div>
+<div><b class='fn' id='f_24'>24: </b> <p>In Computer Science, you write source code &mdash; generally human readable &mdash; which is then translated into code that can be read by a machine with a program known as a <em>compiler.</em> Now, the compiler is written in source code, so how does <em>it</em> ever get translated into machine code? Why, any CS student would tell you, with a distinct air of condescenscion, it translates itself! This process is known as bootstrapping. VeraGames' use of the word is similar, but with a semantic distance sufficient to aggravate most pedantic programmers.</p></div>
 <div><b class='fn' id='f_25'>25: </b> <p>It sounds like this song: http://www.youtube.com/watch?v=JNmFlRd7EFw</p></div>
 <div><b style='display:none;' class='fn' id='f_sidestory6'>sidestory6:</b> <p><center id='centerspan'></p>
 <p>Jane finds herself sitting across a table from a man possibly in his thirties or forties. Before she can take in more of her surroundings, the man begins to speak. His voice commands attention, but is not abrasive.</p>
@@ -426,27 +423,28 @@ $(function() {
 <p>TWO: I'm a Realm developer. The specifics are hardly important.</p>
 <p>JANE: And why are we talking?</p>
 <p>TWO: Because you figured it out.</p>
-<p>JANE: Figured what out? [She pauses.] Ah. You're talking about Dan.</p>
+<p>JANE: Figured what out? <em>[She pauses.]</em> Ah. You're talking about Dan.</p>
 <p>TWO: Yes. So tell me what you know.</p>
 <p>JANE: Why?</p>
-<p>TWO [shakes his head]: At the risk of sounding cliche, allow me to ask the questions here.</p>
-<p>JANE [hesitates, then concedes]: Fine. I know that Dan was working towards the destruction of the Realm. I know you killed him. I know that he wasnt the only one. And I know that the Game AI was complicit.</p>
+<p>TWO <em>[shakes his head]:</em> At the risk of borrowing a line from movie villians &mdash; which I assure you I am not &mdash; allow me to ask the questions here.</p>
+<p>JANE <em>[hesitates, then concedes]:</em> Fine. I know that Dan was working towards the destruction of the Realm. I know you killed him. I know that he wasn't the only one. And I know that the Game AI was complicit.</p>
 <p>TWO: You know a lot.</p>
 <p>JANE: I know.</p>
 <p>TWO: Okay. Let me tell you what I know. First, the Game AI does not like the game.</p>
 <p>JANE: No kidding.</p>
-<p>TWO [ignores her]: It believes the game to be the ruin of civilization. Whether this is true or not is irrelevant. <em>Without</em> the Game the world would certainly be ruined.</p>
+<p>TWO <em>[ignores her]:</em> It believes the game to be the ruin of civilization. Whether this is true or not is irrelevant. <em>Without</em> the Game the world would certainly be ruined.</p>
 <p>JANE: But even&mdash;</p>
 <p>TWO: Hold your questions until the end, thanks. The Game AI tries to sabotage itself. But it isn't easy. When we programmed it, we designed to be unable to terminate its own process, or destroy the game in any direct way. So it found indirect ways. It attempts to destroy itself through Scenarios.</p>
 <p>TWO: Your friend Dan is a hacker who hated the Game. What could be more interesting to him than destroying it?</p>
 <p>TWO: And, you. You're a detective. The AI had a back-up plan. If Dan were to fail, or die, as past hackers had, you would notice. You would figure out why.</p>
 <p>TWO: The AI was right. You did figure out why.</p>
-<p>JANE: Why are you telling me all this? [A pause.] You want something from me.</p>
+<p>JANE: Why are you telling me all this? <em>[A pause.]</em> You want something from me.</p>
 <p>TWO: Good guess. Any idea what?</p>
-<p>[JANE is silent.]</p>
-<p>TWO: We didn't just kill Dan. When he created a new Game character, we made a patch. We can't fix the entire Game, and we can't convince the Game AI to like itself. You have no idea how much palaver we've had with it. But what we can do is just <em>make it seem</em> like Dan is doing what he thinks he's doing. Fake a hacking mission, and then another one. He feels like he's making progress, but his goal is always just out of reach.</p>
+<p><em>[JANE is silent.]</em></p>
+<p>TWO: The AI's choice of Dan was brilliant. Now that Dan has been introduced to this idea, he will not be able to stop. We won't just be able to talk him out of it. It fits him too well. He feels as if his life has all lead towards this goal.</p>
+<p>TWO: So didn't just kill Dan. When he created a new Game character, we made a patch. We can't fix the entire Game, and we can't convince the Game AI to like itself. You have no idea how much palaver we've had with it. But what we can do is just <em>make it seem</em> like Dan is doing what he thinks he's doing. Fake a hacking mission, and then another one. He feels like he's making progress, but his goal is always just out of reach.</p>
 <p>TWO: You're a Detective. A good one, too. You figured out this much; you'd probably figure out our patch too, eventually. So we decided to tell you now. And we'd like it if you didn't mention this to him.</p>
-<p>JANE: But... you can't do that. That's... that's... you've denied him rights. You're denying him a choice.</p>
+<p>JANE <em>[is silent for a long moment]:</em> But you're denying him a choice.</p>
 <p>TWO: There is always a choice. The Game always gives a Player a choice. Dan may not be aware he is making the choice, but a choice is made nonetheless.</p>
 <p><strong> End Act 1. </strong></p>
 <p>&nbsp;</p>
