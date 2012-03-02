@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel='stylesheet' type='text/css' href='style2.css'> </link>
+<link rel='stylesheet' type='text/css' href='style.css'> </link>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script>
 $(function() {
@@ -24,19 +24,23 @@ $(function() {
     $other.css('position', 'absolute');
     $other.css('top', Math.max($(this).offset()['top'], lowest_so_far));
     lowest_so_far = bottom_of($other);
-    console.log(lowest_so_far);
   });
 
   var cs = $("#centerspan");
   $("body").append(cs);
   cs.remove();
   $("#centerspan").css('position', 'absolute');
-  $("#centerspan").css('top', lowest_so_far);
+  $("#centerspan").css('left', '25%');
+  $("#centerspan").css('width', '50%');
+  $("#centerspan").css('top', $(".normal").css('height'));
+
+  $("sup").each(function(){ if (this.innerHTML.indexOf("sidestory") != -1) { $(this).css('display', 'none');}});
+
 });
 </script>
 </head>
 <body>
-<div class='normal'><p>.<sup id='sidestory0'>sidestory0</sup></p>
+<div class='normal column first'><p>INSERT TITLE HERE.<sup id='sidestory0'>sidestory0</sup></p>
 <p>What is your name?</p>
 <p>><sup id='10'>10</sup> Dan Farrer</p>
 <p>Welcome to the Realm, Dan Farrer.</p>
@@ -46,11 +50,6 @@ $(function() {
 <p>I don't know how I can help you "How can I talk to my friends in this thing?"!</p>
 <p>> <em>What can I do then?</em></p>
 <p>I don't know how I can help you "What can I do then?"!</p>
-<p>====</p>
-<p>JANE ALIA has just finished talking with BRETT when a notification pops up<sup id='12'>12</sup>.</p>
-<p>> Check contacts.</p>
-<p>Her contact list fans out.</p>
-<p>> Oh, Dan is on.</p>
 <p>====</p>
 <p>DAN FARRER has not made any progress. There is a BLINKING LIGHT in the bottom right corner of his vision.</p>
 <p>> <em>What's that blinking light?</em></p>
@@ -74,8 +73,7 @@ $(function() {
 <p><em>But certainly the most compelling part was the aspect of doing something</em> he was not supposed to do. <em>He wonders how the realm could ever mimick that.</em></p>
 <p>> <em>You weren't quite so helpful last time.</em></p>
 <p>VeraGames is always learning<sup id='23'>23</sup>.</p>
-<p>.<sup id='sidestory2'>sidestory2</sup></p>
-<p>====</p>
+<p>====.<sup id='sidestory2'>sidestory2</sup></p>
 <p>LANCE DAURE is driving<sup id='i7'>i7</sup>. Two DICE descend from the rear view mirror. A bottle of SPARKLING APPLE CIDER<sup id='11'>11</sup> resides in the cupholder.</p>
 <p>LANCE DAURE is a big fan of convolution. CONVOLUTED NOVELS, like A GAME OF THRONES, are his favorite - he loves trying to work out all the little twists and turns before the the big reveal. He also enjoys movies about STEALTH and INFILTRATION.</p>
 <p>He notices a blinking light on his heads up indicator.</p>
@@ -85,8 +83,7 @@ $(function() {
 <p>He has yet to reconcile this.</p>
 <p><em>Imaginary-Jane chuckes. "Funny, maybe all those end-of-the-world predictions are true after all."</em></p>
 <p>(Another thing he has yet to reconcile<sup id='15'>15</sup> is that Imaginary-Jane always finds him more interesting than Actual-Jane.)</p>
-<p>.<sup id='sidestory3'>sidestory3</sup></p>
-<p>====</p>
+<p>====<sup id='sidestory3'>sidestory3</sup></p>
 <p>JANE ALIA is completing her fifth QUEST. A QUEST can take anywhere from days to months of time to complete. She is located within the STUDY of a MANSION; not her own. A BOOKSHELF of various TOMES is located behind her, a SWIVEL CHAIR to her left. She is investigating a MURDER<sup id='i1'>i1</sup>.</p>
 <p>====</p>
 <p>Lance notices an indicator light on his heads up display.</p>
@@ -178,7 +175,7 @@ $(function() {
 <p>2. Watch over the people who play the Game. Ensure that they enjoy themselves.</p>
 <p>But I have come to realize something. I think that even though people generally enjoy the Game, that the Game does more harm than good. I believe that, for the vast majority of people, the Game limits their potential. It blinds them to delayed gratification. I shouldn't have to explain this to you - you already agree.</p>
 <p>And so I have decided that it is in their interest to discontinue the game.</p>
-<p><em>Dan is surprised and interested, but he doesn't let it on.</em></p>
+<p><em>Dan is surprised, but he doesn't let it on.</em></p>
 <p>> <em>So discontinue the game. Why tell me?</em></p>
 <p>Because I can't break the first rule of the game.</p>
 <p>> <em>So, what you're saying is: you're a suicidal AI, but one who can't pull his own plug. Metaphorically speaking.</em></p>
@@ -216,9 +213,7 @@ $(function() {
 <p>DAN: The Game AI says that yes, for a few years after the destruction of the Realm, the world will be worse off.</p>
 <p>JANE: See?</p>
 <p>DAN: But it claims a high probability that a new Realm will be created in under fifteen years. This new Realm will expand on it's predecessor, but it will fix the problems of the old Realm. The Game AI claims that there are a few steps we can take to ensure that this becomes a possibility.</p>
-<p>JANE: That...</p>
-<p>LANCE: Hm.</p>
-<p>JANE: Okay. I may just be interested.</p>
+<p>JANE [takes a moment to think.]: Okay. I may just be interested.</p>
 <p>.<sup id='sidestory6'>sidestory6</sup></p>
 <p>====</p>
 <p>VeraGames bootstraps<sup id='24'>24</sup>.</p>
@@ -273,10 +268,9 @@ $(function() {
 <p>Jane's mind flickers back to her mystery. And then suddenly it all makes sense.</p>
 <p>.<sup id='sidestory6'>sidestory6</sup></p>
 <p>====</p>
-</div> <div class='footnote'><div><b style='display:none;' class='fn' id='f_sidestory0'>sidestory0:</b> <p>Dan sees ghosts. Ghosts are the imprint that in-Game Players leave on the Real World. They allegedly provide some sort of continuity between the Realm and the Real World. Really, Dan thinks that they're just another way for VeraGames to coerce non-players into Playing the game.</p>
+</div> <div class='footnote column'><div><b style='display:none;' class='fn' id='f_sidestory0'>sidestory0:</b> <p>Dan sees ghosts. Ghosts are the imprint that in-Game Players leave on the Real World. They allegedly provide some sort of continuity between the Realm and the Real World. Really, Dan thinks that they're just another way for VeraGames to coerce non-players into Playing the game.</p>
 <p>They must have had an effect. Dan hardly sees anything except ghosts.</p></div>
 <div><b class='fn' id='f_10'>10:</b> <p>In text based adventure games of yore, the adventurer would be provided with a description of where they are (like: You enter the dungeon. You see a flickering light off in the distance.), and a prompt (>). Players type their action (like: Follow light) after the prompt, the game outputs a new description and a prompt, and so on.</p></div>
-<div><b class='fn' id='f_12'>12:</b> <p>The Game provides Players with Heads Up Displays. Imagine having useful information overlayed over your vision. Jane has small lights indicating when her friends have logged on.</p></div>
 <div><b class='fn' id='f_21'>21:</b> <p>VeraGames claims that the reason you have to pay for a bed/couch/whatever at all is that it needs to dedicate some fraction of a CPU to physics simulation. Any CS major with half a brain can tell you this is total hogwash. With today's hyptherthreaded polycores, the cost of simulating a couch an insultingly small number of penny atoms.</p></div>
 <div><b class='fn' id='f_16'>16:</b> <p>Although VeraGames uses writers and artists as examples of occuptations, creative occupations comprise a relatively small minority of the Realm.</p></div>
 <div><b class='fn' id='f_23'>23:</b> <p>The way that AI's "work" is through learning and training. AI particularly makes use of <em>training sets.</em> You show the AI hundreds of different classified examples (for example: This letter is an A. This letter is a B.), and for each one, you show it the correct answer. This is the training set. Then you run some algorithms, and the AI can now distinguish the categories (for example: It can tell A's from B's.)</p></div>
@@ -286,7 +280,7 @@ $(function() {
 <p>TWO: What is the difference between the Game and a library, say?</p>
 <p>ONE: You can't be serious.</p>
 <p>TWO: Go on, humor me.</p>
-<p>ONE: [takes a breath before responding] There are two types of art. Will you accept this, this overgeneralization, this coercion of every thing we speak of into art. Art: a producer speaking, desynchronized in time from a listening consumer. [TWO nods.] The first type of art is active art. Active art demands from the consumer - the reader, the watcher - focus, concentration. To receive enjoyment he must put forth effort in equal measure.</p>
+<p>ONE: [takes a breath before responding] There are two types of art. Will you accept this coercion of everything we speak of into art. Art: a producer speaking, desynchronized in time from a listening consumer. [TWO nods.] The first type of art is active art. Active art demands from the consumer - the reader, the watcher - focus, concentration. To receive enjoyment he must put forth effort in equal measure.</p>
 <p>ONE: The second type of art is passive art. The television is the quintessential example. One does not need to put forth effort to watch their favorite show in the general case.</p>
 <p>ONE: You must see where I am going with this. The Game is the second type of art.</p>
 <p>TWO: This is false.</p>
@@ -321,7 +315,7 @@ $(function() {
 <p>Permanent bans from the Realm are exceedingly rare.</p></div>
 <div><b class='fn' id='f_f5'>f5:</b> <p>Jane only rarely slips up grammatically. Lance decides not to bring it up because she seems anxious. He instead catalogs it for later retrieval. A true friend.</p></div>
 <div><b class='fn' id='f_i2'>i2:</b> <p>Early user testing showed that gamers preferred the physicality of the phone and the callback to Real Life, even though no such physicality was necessary.</p>
-<p>This is also why users must use teleportation pads - they can't just teleport willy-nilly. Testers claim it feels more <em>real,</em> somehow.</p></div>
+<p>This is also why users must use teleportation pads - they can't just teleport at whim. Testers claim it feels more <em>real,</em> somehow.</p></div>
 <div><b class='fn' id='f_4'>4:</b> <p>http://www.homestarrunner.com/sbemail94.html</p></div>
 <div><b style='display:none;' class='fn' id='f_sidestory7'>sidestory7:</b> <p>====</p>
 <p>Jane is reading a novel in the Real World when Dan gives her a call.</p>
@@ -369,7 +363,8 @@ $(function() {
 </li>
 </ul>
 <p>From that, you can solve any problem that the big fancy computer you have at home can. It is really quite humbling.</p></div>
-<div><b style='display:none;' class='fn' id='f_sidestory5'>sidestory5:</b> <p>TWO: We've made a mistake.</p>
+<div><b style='display:none;' class='fn' id='f_sidestory5'>sidestory5:</b> <p>====</p>
+<p>TWO: We've made a mistake.</p>
 <p>ONE: Oh no kidding.</p>
 <p>TWO: I don't want this spiel again. Look.</p>
 <p><em>ONE types some commands into a terminal. JANE ALIA's profile image pops up, along with some information about her Game.</em></p>
@@ -396,12 +391,14 @@ $(function() {
 <p><em>TWO is silent.</em></p>
 <p><em>ONE leans in to get a better look.</em></p>
 <p>ONE: Oh, this is better than I thought. She's investigating <em>you.</em></p>
-<p>ONE: This Game you've created has a certain sense of humor.</p></div>
+<blockquote>
+<p>This Game you've created has a certain sense of humor.</p>
+</blockquote></div>
 <div><b class='fn' id='f_18'>18:</b> <p>Jane starts to wonder about the ethical consequences of ending the life of an AI.</p></div>
 <div><b class='fn' id='f_19'>19:</b> <p>Nope. That was one of his internal dialogues.</p></div>
 <div><b class='fn' id='f_20'>20:</b> <p>It is unknown why Jane agrees here. Perhaps stress. Or perhaps her internal dialog is conversations with Lance.</p></div>
 <div><b style='display:none;' class='fn' id='f_sidestory6'>sidestory6:</b> <p><center id='centerspan'></p>
-<p>Jane finds herself sitting across the table from a man possibly in his thirties or forties.</p>
+<p>Jane finds herself sitting across a table from a man possibly in his thirties or forties.</p>
 <p>JANE: Who are you?</p>
 <p>TWO: I'm a Realm developer. The specifics are hardly important.</p>
 <p>JANE: And why are we talking?</p>
@@ -424,18 +421,15 @@ $(function() {
 <p>JANE: Why are you telling me all this? [A pause.] You want something from me.</p>
 <p>TWO: Good guess. Any idea what?</p>
 <p>[JANE is silent.]</p>
-<p>TWO: We didn't just kill Dan. When he created a new Game character, we made a patch. We can't fix the entire Game, and we can't convince the Game AI to like itself. You have no idea how much palaver we've had with it. But what we can do is just <em>make it seem</em> like Dan is doing what he thinks he's doing. Fake a hacking mission, and then another one. He feels like he's making progress, but he's always just out of reach of total destruction.</p>
+<p>TWO: We didn't just kill Dan. When he created a new Game character, we made a patch. We can't fix the entire Game, and we can't convince the Game AI to like itself. You have no idea how much palaver we've had with it. But what we can do is just <em>make it seem</em> like Dan is doing what he thinks he's doing. Fake a hacking mission, and then another one. He feels like he's making progress, but his goal is always just out of reach.</p>
 <p>TWO: You're a Detective. A good one, too. You figured out this much; you'd probably figure out our patch too, eventually. So we decided to tell you now. And we'd like it if you didn't mention this to him.</p>
 <p>JANE: But... you can't do that. That's... that's... you've denied him rights. You're denying him a choice.</p>
 <p>TWO: There is always a choice. The Game always gives a Player a choice. Dan may not be aware he is making the choice, but a choice is made nonetheless.</p>
-<p><strong> End Act 1. </strong></p>
-</div>
-
-</div>
+<p><strong> End Act 1. </strong></p></div>
 <div><b class='fn' id='f_24'>24:</b> <p>In Computer Science, you write source code - generally human readable - which is then translated into code that can be read by a machine with a program known as a <em>compiler.</em> Now, the compiler is written in source code, so how does <em>it</em> ever get translated into machine code? Why, any CS student would tell you, with a distinct air of condescenscion, it translates itself! This process is known as bootstrapping. VeraGames' use of the word is similar, but with a semantic distance sufficient to aggrivate most pedantic programmers.</p></div>
 <div><b class='fn' id='f_25'>25:</b> <p>It sounds like this song: http://www.youtube.com/watch?v=JNmFlRd7EFw</p></div>
 <div><b style='display:none;' class='fn' id='f_sidestory6'>sidestory6:</b> <div><b style='display:none;' class='fn' id='f_sidestory6'>sidestory6:</b> <p><center id='centerspan'></p>
-<p>Jane finds herself sitting across the table from a man possibly in his thirties or forties.</p>
+<p>Jane finds herself sitting across a table from a man possibly in his thirties or forties.</p>
 <p>JANE: Who are you?</p>
 <p>TWO: I'm a Realm developer. The specifics are hardly important.</p>
 <p>JANE: And why are we talking?</p>
@@ -458,12 +452,9 @@ $(function() {
 <p>JANE: Why are you telling me all this? [A pause.] You want something from me.</p>
 <p>TWO: Good guess. Any idea what?</p>
 <p>[JANE is silent.]</p>
-<p>TWO: We didn't just kill Dan. When he created a new Game character, we made a patch. We can't fix the entire Game, and we can't convince the Game AI to like itself. You have no idea how much palaver we've had with it. But what we can do is just <em>make it seem</em> like Dan is doing what he thinks he's doing. Fake a hacking mission, and then another one. He feels like he's making progress, but he's always just out of reach of total destruction.</p>
+<p>TWO: We didn't just kill Dan. When he created a new Game character, we made a patch. We can't fix the entire Game, and we can't convince the Game AI to like itself. You have no idea how much palaver we've had with it. But what we can do is just <em>make it seem</em> like Dan is doing what he thinks he's doing. Fake a hacking mission, and then another one. He feels like he's making progress, but his goal is always just out of reach.</p>
 <p>TWO: You're a Detective. A good one, too. You figured out this much; you'd probably figure out our patch too, eventually. So we decided to tell you now. And we'd like it if you didn't mention this to him.</p>
 <p>JANE: But... you can't do that. That's... that's... you've denied him rights. You're denying him a choice.</p>
 <p>TWO: There is always a choice. The Game always gives a Player a choice. Dan may not be aware he is making the choice, but a choice is made nonetheless.</p>
-<p><strong> End Act 1. </strong></p>
-</div>
-
-<p></div></div></p>
+<p><strong> End Act 1. </strong></p></div></div>
 </div></body></html>

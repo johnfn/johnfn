@@ -1,17 +1,37 @@
-.normal {
-  float: left;
-  width: 45%;
-}
-
-.footnote {
-  float: right;
-  width: 45%;
-}
-
-.fn {
-  font-weight: bold;
-}
-
 body {
   font-family: Georgia;
+  line-height: 150%;
 }
+
+
+p {
+  margin: 1em 0;
+}
+
+center {
+  text-align: left; /* HA HA HA HA HA !!!!!!!! */
+}
+
+#centerspan {
+  width: 50%;
+}
+
+em {
+    font-style: italic;
+}
+
+.column {
+    width: 48%;
+    margin-left: 4%;
+    float: left;
+}
+.column.first {
+    margin-left: 0;
+}
+.clear {
+    clear: both;
+}
+strong {
+    font-weight: bold;
+}
+
