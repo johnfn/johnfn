@@ -5,7 +5,16 @@
 <link rel='stylesheet' type='text/css' href='style2.css'> </link>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script>
+
+/* Hey! If you're reading this, stop thinking about how crappy my code is and start thinking about how deep it is that my story, which is about the union of technology and humanity, was itself created via the union of fuzzy and techy. CS and Creative Writing. Deep. So deep.
+
+  I'm sure the crappy code has some sort of meaning too. Just give me a sec to come up with it. */
+
 $(function() {
+    // reposition nodes on a resize
+  $(window).resize(function(){
+    window.location.reload(true);
+  });
   var lowest_so_far = 0;
 
   function bottom_of(elem) {
@@ -26,18 +35,19 @@ $(function() {
     lowest_so_far = bottom_of($other);
   });
 
-  var cs = $("#centerspan");
-  $("body").append(cs);
-  $("#centerspan").css('position', 'absolute');
-  $("#centerspan").css('left', '25%');
-  $("#centerspan").css('width', '50%');
   $("#centerspan").css('top', $(".normal").css('height'));
+    var cs = $("#centerspan");
+    $("body").append(cs);
+    $("#centerspan").css('position', 'absolute');
+    $("#centerspan").css('left', '25%');
+    $("#centerspan").css('width', '50%');
 
-  // Hide all 'sidestory' nodes.
-  $("sup").each(function(){ if (this.innerHTML.indexOf("sidestory") != -1) { $(this).css('display', 'none');}});
+    // Hide all 'sidestory' nodes.
+    $("sup").each(function(){ if (this.innerHTML.indexOf("sidestory") != -1) { $(this).css('display', 'none');}});
 
-  // Attach all footnote numbers to corresponding text, with no breaks in between.
-  $(".fn").each(function(){ $(this).parent().children("p").prepend($(this)); });
+    // Attach all footnote numbers to corresponding text, with no breaks in between.
+    $(".fn").each(function(){ $(this).parent().children("p").prepend($(this)); });
+
 });
 </script>
 </head>
@@ -290,7 +300,7 @@ $(function() {
 <p>The Realm upended traditional jobs. Nearly the entire transportation industry was deprecated by Realmwide transportation.</p></div>
 <div><b class='fn' id='f_11'>11: </b> <p>His favorite drink.</p></div>
 <div><b class='fn' id='f_13'>13: </b> <p>Lucida Handwriting looks like this: http://www.clickstart.org.uk/assets/img/sites/pages/5906/LucidaHandwriting.gif</p></div>
-<div><b class='fn' id='f_14'>14: </b> <p>Georgia looks like this: ((TODO - could just provide an example right in the text.))</p></div>
+<div><b class='fn' id='f_14'>14: </b> <p>Georgia is the font used in this story.</p></div>
 <div><b class='fn' id='f_15'>15: </b> <p>Or even realize.</p></div>
 <div><b style='display:none;' class='fn' id='f_sidestory4'>sidestory4:</b> <p>====</p>
 <p>ONE: But the game is a denial of basic humanity. The game tweaks the emotions of Players, making them enjoy the game more. VeraGames replaces true emotions with new ones. Unnatural ones, in the literal sense of the word.</p>
